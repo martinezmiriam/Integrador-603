@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Admin. Estacionamiento y Autolavado O.C</title>
+    <link rel="stylesheet" href="css/reserva.css">
+    <!-- Archivo CSS separado para el panel admin -->
+    <link rel="stylesheet" href="css/admin-panel.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="img/LogoOficial.png" alt="Logo Oficial" class="header-logo">
+                <h1><a href="index.html">Admin. Estacionamiento y Autolavado O.C</a></h1>
+            </div>
+            <nav>
+                <a href="#menu" class="menu-toggle">Menu</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                        <li><a href="admin.html">Inicio</a></li>
+                        <li><a href="Admin_Promo.html">Promociones</a></li>
+						<li><a href="carritoAdmin.html">Servicios</a></li>
+						<li><a href="Reservas.html">Reserva</a></li>
+						<li><a href="ayuda.html">Guia de ayuda</a></li>
+            </ul>
+            <a href="#" class="close">&times;</a>
+        </div>
+    </nav>
+
+    <div class="banner-container">
+        <img src="img/ayuda/reserva.png" alt="Servicios de Autolavado" class="banner-image">
+        <div class="banner-text">
+            <div class="title-container">
+                <h2>Reservaciones</h2>
+            </div>
+            <p>Bienvenido a las reservaciones Administrador</p>
+        </div>
+    </div>
+
+    <!-- Panel de Administrador -->
+    <div class="admin-container">
+        <div class="admin-header">
+            <div>
+                <h2>Panel de Control</h2>
+                <p>Administración de Reservas</p>
+            </div>
+        </div>
+        
+        <div class="admin-dashboard">
+            <div class="admin-card parking">
+                <h3>Estacionamiento</h3>
+                <div class="count" id="parking-count">0</div>
+                <p>Espacios ocupados</p>
+                <div class="capacity-bar">
+                    <div class="capacity-fill" id="parking-capacity-fill"></div>
+                </div>
+                <p class="capacity-text"><span id="parking-availability">50</span> de 50 disponibles</p>
+            </div>
+            
+            <div class="admin-card carwash">
+                <h3>Autolavado</h3>
+                <div class="count" id="carwash-count">0</div>
+                <p>Vehículos registrados</p>
+            </div>
+            
+            <div class="admin-card total">
+                <h3>Total Servicios</h3>
+                <div class="count" id="total-count">0</div>
+                <p>Vehículos totales</p>
+            </div>
+        </div>
+        
+        <h3 class="admin-section-title">Registro de Clientes</h3>
+        
+        <div class="admin-search-bar">
+            <input type="text" id="search-input" placeholder="Buscar cliente por nombre...">
+            <button id="search-button" class="admin-btn-primary">Buscar</button>
+        </div>
+        
+        <div class="admin-filters">
+            <div class="filter-group">
+                <label>Servicio:</label>
+                <select id="service-filter">
+                    <option value="all">Todos los servicios</option>
+                    <option value="carwash">Solo autolavado</option>
+                    <option value="parking">Solo estacionamiento</option>
+                    <option value="both">Ambos servicios</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Estado de pago:</label>
+                <select id="payment-filter">
+                    <option value="all">Todos</option>
+                    <option value="paid">Pagados</option>
+                    <option value="unpaid">Sin pagar</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="admin-table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Tipo de Lavado</th>
+                        <th>Estacionamiento</th>
+                        <th>Estado de Pago</th>
+                        <th>Fecha/Hora</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="client-table-body">
+                    <!-- Los datos de la tabla se cargarán dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="admin-pagination">
+            <button id="prev-page">&laquo;</button>
+            <span id="page-info">Página 1</span>
+            <button id="next-page">&raquo;</button>
+        </div>
+        
+    </div>
+
+    <footer>
+        <p>Todos los derechos Reservados a O.C</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Script para toggle del menú
+				document.querySelector('a[href="#menu"]').addEventListener('click', function(e) {
+					e.preventDefault();
+					document.getElementById('menu').classList.toggle('active');
+				});
+				
+				// Script para cerrar el menú
+				document.querySelector('#menu .close').addEventListener('click', function(e) {
+					e.preventDefault();
+					document.getElementById('menu').classList.remove('active');
+				});
+
+				document.addEventListener('DOMContentLoaded', function() {
+					
+    // Script para toggle del menú
+    const menuToggle = document.querySelector('a[href="#menu"]');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('menu').classList.toggle('active');
+        });
+    }
+    
+    // Script para cerrar el menú
+    const closeMenu = document.querySelector('#menu .close');
+    if (closeMenu) {
+        closeMenu.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('menu').classList.remove('active');
+        });
+    }
+});
+
+						});
+				
+		</script>
+</body>
+</html>

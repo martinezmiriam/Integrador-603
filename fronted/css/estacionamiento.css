@@ -1,0 +1,381 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #535353, #535353);
+    color: #333;
+    padding-top: 85px;
+}
+
+/* Header - Siempre con color azul */
+#header {
+    background: linear-gradient(to right, #000000, #63676d);
+    padding: 1.5rem;
+    width: 100%;
+    z-index: 10000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+    border-radius: 5px;
+}
+
+#header h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#header a {
+    color: #f5f1f1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#header a:hover {
+    color: #ffffff;
+}
+
+#header nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(7, 6, 6);
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+#header nav a:hover {
+    background-color: rgba(0, 0, 0, 0.407);
+}
+
+/* Menu - Mejorado */
+#menu {
+    background: rgba(42, 47, 55, 0.95);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    top: 0;
+    right: -300px;
+    z-index: 10001;
+    padding: 2rem;
+    transition: right 0.5s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+#menu.active {
+    right: 0;
+}
+
+#menu h2 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.133);
+}
+
+#menu .links {
+    list-style: none;
+    padding: 0;
+}
+
+#menu .links li {
+    margin-bottom: 1rem;
+}
+
+#menu .links a {
+    color: rgba(255, 255, 255, 0.555);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+    transition: 0.3s ease;
+}
+
+#menu .links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+#menu .close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+#menu .close:hover {
+    color: #fff;
+}
+
+/* Estilos del banner - Mejorados */
+.banner-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+    width: 80%;
+}
+
+.banner-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.banner-text p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Overlay oscuro para mejorar la legibilidad del texto */
+.banner-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.banner-image {
+    z-index: 0;
+}
+
+.banner-text {
+    z-index: 2;
+}
+
+/* Contenedor del menú */
+.menu-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 0 20px;
+}
+
+/* Sección de Reserva de Estacionamiento */
+.wrapper {
+    padding: 2em 0;
+}
+
+.inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2em;
+}
+
+.reservation-container {
+    background-color: #abaaaa;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgb(7, 8, 8);
+    padding: 2em;
+    margin: 2em auto;
+    transition: all 0.5s ease;
+    max-width: 1200px;
+}
+
+.reservation-container h2.major {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5em;
+    color: #090808;
+}
+
+.reservation-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.reservation-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.reservation-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-form {
+    flex: 2;
+    min-width: 300px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75em;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: rgb(253, 253, 253);
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.form-submit {
+    margin-top: 1.5em;
+    text-align: center;
+}
+
+.submit-btn {
+    background: linear-gradient(45deg, #001a57, #35c2ff);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(45deg, #35c2ff, #001a57);
+    transform: translateY(-3px);
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+/* Logout link */
+.logout {
+    color: #dc3535 !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .banner-text h2 {
+        font-size: 2.5rem;
+    }
+    
+    .reservation-content {
+        flex-direction: column;
+    }
+    
+    .reservation-image {
+        order: 1;
+    }
+    
+    .reservation-form {
+        order: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner-text h2 {
+        font-size: 2rem;
+    }
+    
+    .banner-container {
+        height: 300px;
+    }
+    
+    .banner-image {
+        height: 300px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 1em;
+    }
+    
+    .form-group {
+        min-width: 100%;
+    }
+}

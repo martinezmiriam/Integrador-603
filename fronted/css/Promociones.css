@@ -1,0 +1,678 @@
+/* css/carrito.css */
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #737373;
+    color: #333;
+    /* No necesitamos tanto padding porque el banner ocupará ese espacio */
+    padding-top: 85px;
+}
+
+.service-title {
+    text-align: center;
+}
+
+.service-title {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Header - Ahora siempre con color azul */
+#header {
+    background: linear-gradient(to right, #000000, #63676d); /* Mantenemos el azul en el header */
+    padding: 1.5rem;
+    width: 100%;
+    z-index: 10000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+    border-radius: 5px;
+}
+
+#header h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#header a {
+    color: #f5f1f1; /* Color de las letras de menu*/
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#header a:hover {
+    color: #ffffff; /* Color de las letras de menu*/
+}
+
+#header nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(7, 6, 6);
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+#header nav a:hover {
+    background-color: rgba(0, 0, 0, 0.407); /*Color del boton de menu*/
+}
+
+/* Menu - Mejorado */
+#menu {
+    background: rgba(42, 47, 55, 0.95);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    top: 0;
+    right: -300px;
+    z-index: 10001;
+    padding: 2rem;
+    transition: right 0.5s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+#menu.active {
+    right: 0;
+}
+
+#menu h2 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.133);
+}
+
+#menu .links {
+    list-style: none;
+    padding: 0;
+}
+
+#menu .links li {
+    margin-bottom: 1rem;
+}
+
+#menu .links a {
+    color: rgba(255, 255, 255, 0.555);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+    transition: 0.3s ease;
+}
+
+#menu .links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+#menu .close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+#menu .close:hover {
+    color: #fff;
+}
+
+
+
+/* Estilos del banner - Mejorados */
+/* Estilos para el banner de imagen */
+.banner-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+    width: 80%;
+}
+
+.banner-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.banner-text p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* Overlay oscuro para mejorar la legibilidad del texto */
+.banner-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.banner-image {
+    z-index: 0;
+}
+
+.banner-text {
+    z-index: 2;
+}
+
+/* Contenedor del menú */
+.menu-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 0 20px;
+}
+
+/* Tarjetas de servicio */
+.pizza-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pizza-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pizza-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.pizza-card h3 {
+    padding: 15px 15px 5px;
+    font-size: 1.2rem;
+    color: #111;
+}
+
+.pizza-card p {
+    padding: 0 15px 10px;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .banner h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .banner h1 {
+        font-size: 2rem;
+    }
+    
+    .banner {
+        height: 300px;
+    }
+}
+/*FIN DEL INICIO*/
+
+
+/*Promociones*/
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #535353, #535353);
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.main-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    background: linear-gradient( #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Grid de promociones */
+.promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de promoción */
+.promotion-card {
+    background: linear-gradient(#2e2e2e, #555555);
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid transparent;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgb(32, 31, 31);
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.promotion-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(150deg, #000000, #000000);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 17px;
+    z-index: -1;
+}
+
+.promotion-card:hover::before,
+.promotion-card.selected::before {
+    opacity: 0.1;
+}
+
+.promotion-card:hover,
+.promotion-card.selected {
+    border-color: #000000;
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 20px 40px rgb(4, 4, 4);
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #c5c4c4;
+    font-size: 2.2rem;
+    display: block;
+    text-shadow: 0 2px 4px rgb(0, 0, 0);
+}
+
+.service-subtitle {
+    font-size: 1rem;
+    color: #cccccc;
+    font-weight: normal;
+    margin-top: 10px;
+    display: block;
+}
+
+/* Servicios incluidos */
+.service-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background: rgb(88, 88, 88);
+    border-radius: 10px;
+    border-left: 4px solid #000000;
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    background: rgb(45, 45, 45);
+    transform: translateX(5px);
+}
+
+.service-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #676985, #141d98a0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.service-item span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Imagen del carro */
+.car-image {
+    margin: 15px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.car-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.car-image:hover img {
+    transform: scale(1.05);
+}
+
+
+@keyframes pulse {
+    0%, 100% { transform: translateY(-50%) rotate(15deg) scale(1); }
+    50% { transform: translateY(-50%) rotate(15deg) scale(1.05); }
+}
+
+/* Información de contacto */
+.contact-info {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.website {
+    font-size: 14px;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+.book-btn {
+    background: linear-gradient(45deg, #092d81, #35c2ff);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book-btn:hover {
+    background: linear-gradient(45deg, #133480e8, #4dc8fd);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(#2e2e2e, #555555);
+    margin: 10% auto;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    border: 2px solid #000000;
+    box-shadow: 0 20px 40px rgb(10, 96, 188);
+}
+
+.close-modal {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #a50c0c;
+}
+
+.modal-content h2 {
+    color: #f7f7f7;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.modal-content p {
+    margin-bottom: 30px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #092d81, #35c2ff);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #133480e8, #4dc8fd);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(53, 80, 255, 0.755);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #cccccc;
+    border: 2px solid #666;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #133480e8, #4dc8fd);
+    border-color: #ffffff;
+    color: rgb(255, 255, 255);
+}
+/* Logout link */
+.logout {
+    color: #dc3535 !important;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .promotions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .promotions-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .service-title {
+        font-size: 2rem;
+    }
+    
+    .highlight {
+        font-size: 2.5rem;
+    }
+    
+    .discount-badge {
+        right: 20px;
+        min-width: 70px;
+        min-height: 70px;
+    }
+    
+    .modal-buttons {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    .promotion-card {
+        padding: 20px;
+    }
+    
+    .service-images {
+        gap: 10px;
+    }
+    
+    .service-item {
+        padding: 10px;
+    }
+}
+/*FIN DE LAS PROMOCIONES*/

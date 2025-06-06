@@ -1,0 +1,444 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            line-height: 1.0;
+            background-color: #737373;
+        }
+
+        /* Page Wrapper */
+        #page-wrapper {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Header - Banda de menú principal */
+        #header {
+            background: linear-gradient(to right, #000000, #63676d);
+            padding: 1.5rem;
+            width: 100%;
+            z-index: 10000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            border-radius: 5px;
+        }
+
+        #header h1 {
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        #header a {
+            color: #f5f1f1; /* Color de los enlaces del header */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #header a:hover {
+            color: #ffffff; /* Color de los enlaces del header al pasar el mouse */
+        }
+
+        #header nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgb(7, 6, 6);
+            border-radius: 4px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        #header nav a:hover {
+            background-color: rgba(0, 0, 0, 0.407);
+        }
+
+        /* Menu */
+        #menu {
+            background: rgba(42, 47, 55, 0.95);
+            color: #fff; /* Color del texto del menu */
+            position: fixed;
+            width: 100%;
+            max-width: 300px;
+            height: 100vh;
+            top: 0;
+            right: -300px;
+            z-index: 10001;
+            padding: 2rem;
+            transition: right 0.5s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        #menu.active {
+            right: 0;
+        }
+
+        #menu h2 {
+            margin-top: 0;
+            color: #fff; /* Color del titulo del menu */
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.133);
+        }
+
+        #menu .links {
+            list-style: none;
+            padding: 0;
+        }
+
+        #menu .links li {
+            margin-bottom: 1rem;
+        }
+
+        #menu .links a {
+            color: rgba(255, 255, 255, 0.555); /* Color de los enlaces del menu */
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+            transition: 0.3s ease;
+        }
+
+        #menu .links a:hover {
+            color: #fff; /* Color de los enlaces del menu al pasar el mouse */
+            transform: translateX(5px);
+        }
+
+        #menu .close {
+            display: block;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        #menu .close:hover {
+            color: #fff; /* Color del icono de cerrar el menu al pasar el mouse */
+        }
+
+        /* Banner */
+        #banner {
+            background: transparent;
+            color: #fff; /* Color del texto del banner */
+            text-align: center;
+            padding: 0;
+            position: relative;
+            margin-top: 84px;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;    
+            width: 100%;
+            height: 100%;
+            background: url('../img/FondoAdmin.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        #banner .inner {
+            position: relative;
+            z-index: 1;
+            margin: 0 auto;
+            padding: 10rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #banner h2 {
+            margin-top: 0;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Main Content Styles */
+        #main-content {
+            padding: 2rem;
+            margin-top: 2rem;
+            background: #c1c0c0; /* Color de fondo del contenido principal */
+            border-radius: 10px;
+            margin-left: 2rem;
+            margin-right: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: linear-gradient(45deg, #092d81, #35c2ff);
+            color: white; /*Servicios, Promociones, Contacto, Ubicacion*/
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgb(0, 0, 0);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #092d81, #35c2ff);
+        }
+
+        .tab-content {
+            min-height: 600px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .panel-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #000000; /*Linea del COLOR*/
+        }
+
+        .panel-header h2 {
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .panel-header p {
+            font-size: 1.2rem;
+            color: #000000; /*Texto arriba de la linea*/
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #535353ce, #979595);
+            border: 2px solid #000000;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgb(0, 0, 0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+           background: linear-gradient(45deg, #092d81, #35c2ff);
+            color: white;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #000000;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #000000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #000000; 
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #848383;/*Linea de los comentarios*/
+        }
+
+        .btn-save {
+            background: linear-gradient(45deg, #092d81, #35c2ff);
+            color: white; /*Guardar cambios*/
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgb(0, 0, 0); /*Sombra del boton ¨Guardar Cambios¨*/
+        }
+
+        .promotions-grid,
+        .contact-grid,
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .promotion-card,
+        .contact-card,
+        .location-card {
+            background: linear-gradient(135deg, #535353ce, #979595);
+            border: 2px solid #000000;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgb(0, 0, 0);
+        }
+
+        .promotion-card h3,
+        .contact-card h3,
+        .location-card h3 {
+            font-size: 1.3rem;
+            color: #030303; /*Texto de las promociones, contacto y ubicacion*/
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        /* Logout link */
+.logout {
+    color: #dc3535 !important;
+}
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #banner {
+                height: 350px;
+                margin-top: 70px;
+            }
+            
+            #banner .inner {
+                padding: 6rem 1.5rem;
+            }
+            
+            #banner h2 {
+                font-size: 2.5rem;
+            }
+
+            #main-content {
+                margin-left: 1rem;
+                margin-right: 1rem;
+                padding: 1rem;
+            }
+
+            .control-tabs {
+                justify-content: center;
+            }
+
+            .tab-btn {
+                flex-direction: column;
+                text-align: center;
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #banner {
+                height: 300px;
+            }
+            
+            #banner h2 {
+                font-size: 2rem;
+            }
+        }

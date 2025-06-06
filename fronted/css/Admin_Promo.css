@@ -1,0 +1,861 @@
+/* css/admin-promociones.css */
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #737373;
+    color: #333;
+    padding-top: 85px;
+}
+
+.service-title {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Header - Manteniendo el estilo original */
+#header {
+    background: linear-gradient(to right, #000000, #63676d);
+    padding: 1.5rem;
+    width: 100%;
+    z-index: 10000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+    border-radius: 5px;
+}
+
+#header h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#header a {
+    color: #f5f1f1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#header a:hover {
+    color: #ffffff;
+}
+
+#header nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(7, 6, 6);
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+#header nav a:hover {
+    background-color: rgba(0, 0, 0, 0.407);
+}
+
+/* Menu - Manteniendo el estilo original */
+#menu {
+    background: rgba(42, 47, 55, 0.95);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    top: 0;
+    right: -300px;
+    z-index: 10001;
+    padding: 2rem;
+    transition: right 0.5s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+#menu.active {
+    right: 0;
+}
+
+#menu h2 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.133);
+}
+
+#menu .links {
+    list-style: none;
+    padding: 0;
+}
+
+#menu .links li {
+    margin-bottom: 1rem;
+}
+
+#menu .links a {
+    color: rgba(255, 255, 255, 0.555);
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 0.5rem 0;
+    transition: 0.3s ease;
+}
+
+#menu .links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+#menu .close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+#menu .close:hover {
+    color: #fff;
+}
+
+/* Banner - Manteniendo el estilo original */
+.banner-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 80%;
+}
+
+.banner-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.banner-text p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.banner-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* ===== ESTILOS ESPECÍFICOS PARA ADMINISTRADOR ===== */
+
+/* Panel de Control Admin */
+.admin-controls {
+    background: linear-gradient(to right, #bdbdbd, #bdbdbd);
+    margin: 20px auto;
+    max-width: 1200px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgb(0, 0, 0);
+}
+
+.admin-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.admin-toolbar h2 {
+    color: #000000;
+    font-size: 1.5rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toolbar-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.toolbar-buttons button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-save {
+    background: linear-gradient(45deg, #092d81, #35c2ff);
+    color: white;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(9, 45, 129, 0.3);
+}
+
+.btn-preview {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+}
+
+.btn-preview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-reset {
+    background: linear-gradient(45deg, #dc3545, #e55353);
+    color: white;
+}
+
+.btn-reset:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Grid de promociones */
+.promotions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Tarjetas de promoción */
+/* Tarjetas de promoción */
+.promotion-card {
+    background: linear-gradient(#2e2e2e, #555555);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgb(32, 31, 31);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid transparent;
+    color: white;
+}
+
+.promotion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgb(4, 4, 4);
+    border-color: #000000;
+}
+
+/* Controles de administrador para tarjetas */
+.admin-card-controls {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    gap: 5px;
+}
+
+.edit-image-btn {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.edit-image-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Contenido de la tarjeta */
+
+.card-content {
+    padding: 30px;
+    color: white;
+}
+
+/* Grupos de edición de título */
+.title-edit-group {
+    position: relative;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.service-title {
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: #c5c4c4;
+    font-weight: bold;
+}
+
+.title-edit {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #092d81;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.title-edit:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Servicios */
+.service-images {
+    margin: 25px 0;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgb(88, 88, 88);
+    transition: all 0.3s ease;
+    position: relative;
+    border-left: 4px solid #000000;
+}
+
+.service-item:hover {
+    background: rgb(45, 45, 45);
+    transform: translateX(5px);
+}
+
+.service-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #676985, #141d98a0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.service-edit {
+    position: absolute;
+    right: 10px;
+    background: #092d81;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.service-item:hover .service-edit {
+    opacity: 0.7;
+}
+
+.service-edit:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Imagen del carro */
+.car-image {
+    position: relative;
+    text-align: center;
+    margin: 25px 0;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.car-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.car-image:hover .image-overlay {
+    opacity: 1;
+}
+
+.change-image-btn {
+    background: #092d81;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.change-image-btn:hover {
+    background: #0a3399;
+    transform: translateY(-2px);
+}
+
+/* Botón de reservar */
+.contact-info {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.book-btn {
+    background: linear-gradient(45deg, #092d81, #35c2ff);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(9, 45, 129, 0.3);
+}
+
+.book-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(9, 45, 129, 0.4);
+}
+
+/* Botones de edición generales */
+.edit-btn {
+    background: #092d81;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.edit-btn:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Edición de elementos del banner */
+.banner-text .edit-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* ===== MODALES ===== */
+
+/* Modal base */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    animation: slideIn 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-content .close:hover {
+    color: #333;
+}
+
+/* Modal de texto */
+#editTextarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+}
+
+#editTextarea:focus {
+    outline: none;
+    border-color: #092d81;
+}
+
+/* Modal de imagen */
+.image-upload-area {
+    margin-bottom: 20px;
+}
+
+.upload-zone {
+    border: 2px dashed #092d81;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(9, 45, 129, 0.05);
+}
+
+.upload-zone:hover {
+    background: rgba(9, 45, 129, 0.1);
+    border-color: #0a3399;
+}
+
+.upload-zone i {
+    font-size: 3rem;
+    color: #092d81;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.upload-zone p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.file-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.image-preview {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de modal */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #092d81, #35c2ff);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(9, 45, 129, 0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* ===== NOTIFICACIONES ===== */
+
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+/* ===== MODO VISTA PREVIA ===== */
+
+.preview-mode .edit-btn,
+.preview-mode .admin-card-controls,
+.preview-mode .admin-controls {
+    display: none !important;
+}
+
+/* ===== ANIMACIONES ===== */
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+    background: linear-gradient(to right, #000000, #63676d);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+    .banner-text h1 {
+        font-size: 2rem;
+    }
+    
+    .banner-text p {
+        font-size: 1rem;
+    }
+    
+    .promotions-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .admin-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .toolbar-buttons {
+        justify-content: center;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .service-title {
+        font-size: 1.5rem;
+    }
+    
+    .card-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .banner-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .banner-text p {
+        font-size: 0.9rem;
+    }
+    
+    .toolbar-buttons {
+        flex-direction: column;
+    }
+    
+    .toolbar-buttons button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .service-title {
+        font-size: 1.3rem;
+    }
+    
+    .car-image img {
+        height: 150px;
+    }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servicios de Autolavado O.C</title>
+    <link rel="stylesheet" href="css/carrito.css" />
+    <!-- Font Awesome para el ícono del carrito -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="img/LogoOficial.png"
+            alt="Logo Oficial"
+            class="header-logo"
+          />
+          <h1>
+            <a href="index.html">Admin. Estacionamiento y Autolavado O.C</a>
+          </h1>
+        </div>
+        <nav>
+          <a href="#menu" class="menu-toggle">Menu</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <div class="inner">
+        <h2>Menu</h2>
+        <ul class="links">
+          <li><a href="admin.html">Inicio</a></li>
+          <li><a href="Promociones.html">Autolavado</a></li>
+          <li><a href="carritoAdmin.html">Servicios</a></li>
+          <li><a href="Reservas.html">Reserva</a></li>
+          <li><a href="ayuda.html">Guia de ayuda</a></li>
+        </ul>
+        <a href="#" class="close">&times;</a>
+      </div>
+    </nav>
+    <div class="banner-container">
+      <img
+        src="img/ayuda/lololo.png"
+        alt="Servicios de Autolavado"
+        class="banner-image"
+      />
+      <div class="banner-text">
+        <div class="title-container">
+          <h2>Guia de ayuda</h2>
+        </div>
+        <p>
+          Bienvenido al manuel de guia Administrador, quiere saber algo sobre la
+          pagina?
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <p>Todos los derechos Reservados a O.C</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Menú de navegación
+        const menuToggle = document.querySelector(".menu-toggle");
+        const closeButton = document.querySelector("#menu .close");
+        const menu = document.querySelector("#menu");
+
+        menuToggle.addEventListener("click", function (e) {
+          e.preventDefault();
+          menu.classList.add("active");
+        });
+
+        closeButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          menu.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>

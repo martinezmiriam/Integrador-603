@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Cliente - Autolavado O.C</title>
+    <link rel="stylesheet" href="css/carrito.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="img/LogoOficial.png" alt="Logo Oficial" class="header-logo">
+                <h1><a href="index.html">Autolavado O.C</a></h1>
+            </div>
+            <nav>
+                <a href="#menu" class="menu-toggle">Menu</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+               <li><a href="cliente.html">Inicio</a></li>
+						<li><a href="perfil.html">Mi perfil</a></li>
+				<li><a href="Promociones.html">Autolavado</a></li>
+						<li><a href="CarritoCliente.html">Productos Extras</a></li>
+						<li><a href="estacionamiento.html">Estacionamiento</a></li>
+						<li><a href="index.html" class="logout">Cerrar Sesión</a></li>
+            </ul>
+            <a href="#" class="close">&times;</a>
+        </div>
+    </nav>
+
+    
+
+    <!-- Contenido del Perfil -->
+    <main class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h3 id="userName"><!-- Nombre del usuario desde BD --></h3>
+                    <p class="member-since">Cliente desde: <!-- Fecha desde BD --></p>
+                    <span class="status-badge active">Activo</span>
+                </div>
+            </div>
+
+            <div class="profile-tabs">
+                <button class="tab-btn active" data-tab="personal">Información Personal</button>
+                <button class="tab-btn" data-tab="history">Historial</button>
+            </div>
+
+            <!-- Tab: Información Personal -->
+            <div class="tab-content active" id="personal">
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Nombre</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Apellido</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Tab: Historial -->
+            <div class="tab-content" id="history">
+                <div class="history-section">
+                    <div class="history-group">
+                        <h4><i class="fas fa-car-wash"></i> Historial de Servicios</h4>
+                        <div class="history-list" id="servicesHistory">
+                            <!-- Los servicios se cargarán dinámicamente desde la BD -->
+                            <p class="no-data">No hay servicios registrados</p>
+                        </div>
+                    </div>
+
+                    <div class="history-group">
+                        <h4><i class="fas fa-parking"></i> Reservas de Estacionamiento</h4>
+                        <div class="history-list" id="parkingHistory">
+                            <!-- Las reservas se cargarán dinámicamente desde la BD -->
+                            <p class="no-data">No hay reservas registradas</p>
+                        </div>
+                    </div>
+
+                    <div class="history-group">
+                        <h4><i class="fas fa-tags"></i> Promociones Utilizadas</h4>
+                        <div class="history-list" id="promotionsHistory">
+                            <!-- Las promociones se cargarán dinámicamente desde la BD -->
+                            <p class="no-data">No hay promociones utilizadas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button type="button" class="btn-save">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+                <button type="button" class="btn-cancel">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Panel de Estadísticas -->
+        <div class="stats-panel">
+            <h4>Mis Estadísticas</h4>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-car-wash"></i>
+                    <div>
+                        <span class="stat-number" id="totalServices">0</span>
+                        <span class="stat-label">Servicios Realizados</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div>
+                        <span class="stat-number" id="totalSpent">$0</span>
+                        <span class="stat-label">Total Gastado</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <span class="stat-number" id="activeReservations">0</span>
+                        <span class="stat-label">Reservas Activas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú de navegación
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeButton = document.querySelector('#menu .close');
+            const menu = document.querySelector('#menu');
+            
+            // Abrir y cerrar el menú
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                menu.classList.add('active');
+            });
+            // Cerrar el menú al hacer clic en el botón de cerrar
+            closeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                menu.classList.remove('active');
+            });
+
+            // Tabs del perfil
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            // Inicializar el primer tab como activo
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remover clase active de todos los botones y contenidos
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Agregar clase active al botón clickeado y su contenido correspondiente
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Botón guardar cambios
+            const saveButton = document.querySelector('.btn-save');
+            saveButton.addEventListener('click', function() {
+                // Simular guardado
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+                this.disabled = true;
+                // Aquí puedes agregar la lógica para guardar los cambios en la BD
+                // Por ejemplo, enviar los datos del formulario a un servidor
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i> Guardado';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+                        this.disabled = false;
+                    }, 1500);
+                }, 2000);
+            });
+            
+
+            // Aquí puedes agregar funciones para cargar datos desde la BD
+            // loadUserData();
+            // loadServiceHistory();
+            // loadParkingHistory();
+            // loadPromotionsHistory();
+            // loadUserStats();
+        });
+
+        // Funciones para cargar datos desde la base de datos (para implementar)
+        /*
+        function loadUserData() {
+            // Cargar información del usuario desde la BD
+            // Llenar campos: userName, firstName, lastName, email, phone, member-since
+        }
+
+        function loadServiceHistory() {
+            // Cargar historial de servicios desde la BD
+            // Llenar contenedor: servicesHistory
+        }
+
+        function loadParkingHistory() {
+            // Cargar historial de estacionamiento desde la BD
+            // Llenar contenedor: parkingHistory
+        }
+
+        function loadPromotionsHistory() {
+            // Cargar historial de promociones desde la BD
+            // Llenar contenedor: promotionsHistory
+        }
+
+        function loadUserStats() {
+            // Cargar estadísticas del usuario desde la BD
+            // Llenar: totalServices, totalSpent, loyaltyPoints, activeReservations
+        }
+        */
+    </script>
+</body>
+</html>

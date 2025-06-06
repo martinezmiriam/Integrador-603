@@ -1,0 +1,249 @@
+/* Estilos para el modal del ticket */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 95%;
+    max-height: 95%;
+    overflow: auto;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+
+
+/* Fondo oscuro del modal */
+.modal-backdrop {
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Impide el scrolling del body cuando el modal está abierto */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Color de las lineas */
+.ticket-header {
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #e9e5e5;
+}
+
+.logo {
+    width: 80px;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.company-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #214a75;
+}
+
+.ticket-details {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.detail-group {
+    width: 50%;
+    margin-bottom: 5px;
+}
+
+.detail-label {
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.detail-value {
+    font-size: 0.9rem;
+}
+
+.time-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+}
+
+.time-group {
+    width: 48%;
+}
+
+.parking-info, .vehicle-info {
+    background-color: #f0f7ff;
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.7rem;
+    color: #777;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+}
+
+.save-pdf-button {
+    background: linear-gradient(to right, #000000, #214a75);
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+/* Botón para cerrar el modal */
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    z-index: 1060;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Estilos para impresión y PDF optimizados */
+@media print {
+    @page {
+        size: 100mm 150mm !important; /* Dimensiones personalizadas - solo una página */
+        margin: 0 !important;
+    }
+    
+    html, body {
+        width: 100mm !important;
+        height: 150mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    body * {
+        visibility: hidden;
+    }
+    
+    .modal-content, .modal-content * {
+        visibility: visible;
+    }
+    
+    .modal-content {
+        position: absolute !important;
+        left: 0 !important; /* Alineado a la izquierda en lugar de centrado */
+        top: 0 !important;
+        width: 100mm !important;
+        height: 150mm !important;
+        transform: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        border: none !important;
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        page-break-inside: avoid !important;
+    }
+    
+    .ticket-container {
+        box-shadow: none !important;
+        max-width: 100% !important;
+        font-size: 95% !important; /* Aumentado para mejor legibilidad */
+        width: 100% !important;
+        height: 100% !important;
+        page-break-after: avoid !important;
+        page-break-before: avoid !important;
+        page-break-inside: avoid !important;
+        overflow: hidden !important;
+        border: none !important;
+        transform-origin: top left !important; /* Origen de transformación en la esquina superior izquierda */
+        transform: scale(1.05) !important; /* Ligeramente más grande */
+    }
+    
+    .close-modal, .save-pdf-button {
+        display: none !important;
+    }
+    
+    /* Evita que cada elemento cause un salto de página */
+    .ticket-header, .ticket-details, .time-details, 
+    .parking-info, .vehicle-info, .footer {
+        page-break-inside: avoid !important;
+    }
+    
+    /* Elimina la escala a nivel de componentes individuales para evitar conflictos */
+    .ticket-container * {
+        transform: none !important; 
+    }
+    
+    /* Asegura que el logo y la información esté bien posicionada */
+    .logo-container {
+        text-align: center !important;
+        margin-bottom: 5mm !important;
+    }
+    
+    /* Mejora del espaciado entre elementos */
+    .ticket-details > div, 
+    .time-details > div, 
+    .parking-info > div, 
+    .vehicle-info > div {
+        margin-bottom: 2mm !important;
+    }
+}

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estacionamiento y Autolavado O.C</title>
+    <!-- Font Awesome para el ícono del carrito -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/estacionamiento.css" />
+    <link rel="stylesheet" href="css/ticket.css" />
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-content">
+        <div class="logo-container">
+          <img
+            src="img/LogoOficial.png"
+            alt="Logo Oficial"
+            class="header-logo"
+            onerror="this.src='/api/placeholder/50/50';this.alt='Logo Oficial'"
+          />
+          <h1><a href="index.html">Estacionamiento y Autolavado O.C</a></h1>
+        </div>
+        <nav>
+          <a href="#menu" class="menu-toggle">Menu</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+      <div class="inner">
+        <h2>Menu</h2>
+        <ul class="links">
+          <li><a href="cliente.html">Inicio</a></li>
+          <li><a href="perfil.html">Mi perfil</a></li>
+          <li><a href="Promociones.html">Autolavado</a></li>
+          <li><a href="CarritoCliente.html">Productos Extras</a></li>
+          <li><a href="estacionamiento.html">Estacionamiento</a></li>
+          <li><a href="index.html" class="logout">Cerrar Sesión</a></li>
+        </ul>
+        <a href="#" class="close">&times;</a>
+      </div>
+    </nav>
+
+    <!-- Banner principal -->
+    <div class="banner-container">
+      <img
+        src="img/estacionamiento.png"
+        alt="Servicios de Autolavado"
+        class="banner-image"
+        onerror="this.src='/api/placeholder/1200/400';this.alt='Servicios de Autolavado'"
+      />
+      <div class="banner-text">
+        <div class="title-container">
+          <h2>Estacionamiento</h2>
+        </div>
+        <p>Donde tu vehiculo esta mas a salvo que tu vida las 24/7</p>
+      </div>
+    </div>
+
+    <!-- Sección de Reserva de Estacionamiento -->
+    <section id="tres" class="wrapper spotlight style3">
+      <div class="inner">
+        <div class="reservation-container">
+          <div class="reservation-content">
+            <div class="reservation-form">
+              <form id="parking-form" class="form-3d" action="#" method="post">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Ingrese su correo electrónico"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      placeholder="Ingrese su nombre completo"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="fecha">Fecha Solicitada</label>
+                    <input type="date" id="fecha" name="fecha" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input
+                      type="tel"
+                      id="telefono"
+                      name="telefono"
+                      placeholder="Ingrese su teléfono"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="hora">Hora de llegada</label>
+                    <input type="time" id="hora" name="hora" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="duracion">Duración estimada</label>
+                    <select id="duracion" name="duracion" required>
+                      <option value="">Seleccione duración</option>
+                      <option value="1">1 hora</option>
+                      <option value="2">2 horas</option>
+                      <option value="3">3 horas</option>
+                      <option value="4">4 horas</option>
+                      <option value="5">5+ horas</option>
+                      <option value="24">Todo el día</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="vehiculo">Tipo de vehículo</label>
+                    <select id="vehiculo" name="vehiculo" required>
+                      <option value="">Seleccione tipo de vehículo</option>
+                      <option value="Carro pequeño">Carro pequeño</option>
+                      <option value="Carro mediado">Carro mediano</option>
+                      <option value="Carro Grande">Carro Grande</option>
+                      <option value="Motocicleta">Motocicleta</option>
+                      <option value="Otro...">Otro...</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <input
+                      type="text"
+                      id="matricula"
+                      name="matricula"
+                      placeholder="Ingrese la matrícula del vehículo"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row full-width">
+                  <div class="form-group">
+                    <label for="mensaje">Mensaje (opcional)</label>
+                    <textarea
+                      id="mensaje"
+                      name="mensaje"
+                      placeholder="Ingrese cualquier información adicional"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="form-submit">
+                  <button type="submit" class="submit-btn">
+                    Confirmar Reserva
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal del Ticket - Inicialmente oculto -->
+    <div id="ticket-modal" class="modal-overlay">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <!-- Contenido del ticket -->
+        <div class="ticket-container">
+          <div class="ticket-header">
+            <img
+              src="img/LogoOficial.png"
+              alt="Logo Empresa"
+              class="logo"
+              onerror="this.src='/api/placeholder/120/80';this.alt='Logo Empresa'"
+            />
+            <div class="company-name">Estacionamiento y Autolavado O.C</div>
+          </div>
+
+          <div class="ticket-details">
+            <div class="detail-group">
+              <div class="detail-label">Nombre del Cliente:</div>
+              <div class="detail-value" id="ticket-nombre-cliente"></div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-label">Fecha Solicitada:</div>
+              <div class="detail-value" id="ticket-fecha"></div>
+            </div>
+          </div>
+
+          <div class="time-details">
+            <div class="time-group">
+              <div class="detail-label">Hora Entrada:</div>
+              <div class="detail-value" id="ticket-hora-entrada"></div>
+            </div>
+
+            <div class="time-group">
+              <div class="detail-label">Hora Salida:</div>
+              <div class="detail-value" id="ticket-hora-salida">--:--</div>
+            </div>
+          </div>
+
+          <div class="parking-info">
+            <div class="detail-label">Estacionamiento:</div>
+            <div class="detail-value" id="ticket-parking-spot"></div>
+          </div>
+
+          <div class="vehicle-info">
+            <div class="detail-label">Tipo de Vehículo:</div>
+            <div class="detail-value" id="ticket-vehicle-type"></div>
+          </div>
+
+          <div class="vehicle-info">
+            <div class="detail-label">Matrícula:</div>
+            <div class="detail-value" id="ticket-matricula"></div>
+          </div>
+
+          <button class="save-pdf-button" id="savePdfButton">
+            Guardar como PDF
+          </button>
+
+          <div class="footer">
+            <p>¡Gracias por su preferencia!</p>
+            <p>Estacionamiento y Autolavado O.C</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Todos los derechos Reservados a O.C</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        ///// Menú de navegación ///////////
+        const menuToggle = document.querySelector(".menu-toggle");
+        const closeButton = document.querySelector("#menu .close");
+        const menu = document.querySelector("#menu");
+
+        menuToggle.addEventListener("click", function (e) {
+          e.preventDefault();
+          menu.classList.add("active");
+        });
+
+        closeButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          menu.classList.remove("active");
+        });
+
+        /////// Manejo del formulario y generación del ticket////////
+        const parkingForm = document.getElementById("parking-form");
+        const ticketModal = document.getElementById("ticket-modal");
+        const closeModal = document.querySelector(".close-modal");
+
+        //////// Función para generar un número de cajón aleatorio///////
+        function generarCajonAleatorio() {
+          const numero = Math.floor(Math.random() * 50) + 1;
+          return `Cajón ${numero}`;
+        }
+
+        // Función para calcular la hora de salida estimada
+        function calcularHoraSalida(horaEntrada, duracion) {
+          const [horas, minutos] = horaEntrada.split(":").map(Number);
+          const date = new Date();
+          date.setHours(horas, minutos, 0);
+          date.setHours(date.getHours() + parseInt(duracion));
+          return `${String(date.getHours()).padStart(
+            2,
+            "0"
+          )}:${String(date.getMinutes()).padStart(2, "0")}`;
+        }
+
+        // Manejo del formulario
+        parkingForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Obtener los datos del formulario
+          const nombre = document.getElementById("nombre").value;
+          const fecha = document.getElementById("fecha").value;
+          const hora = document.getElementById("hora").value;
+          const duracion = document.getElementById("duracion").value;
+          const vehiculo = document.getElementById("vehiculo").value;
+          const matricula = document.getElementById("matricula").value;
+
+          // Formatear la fecha
+          const fechaFormateada = new Date(fecha).toLocaleDateString("es-ES");
+
+          // Calcular hora de salida estimada
+          const horaSalida = calcularHoraSalida(hora, duracion);
+
+          // Generar número de cajón aleatorio
+          const cajon = generarCajonAleatorio();
+
+          // Rellenar los datos en el ticket
+          document.getElementById("ticket-nombre-cliente").textContent = nombre;
+          document.getElementById("ticket-fecha").textContent = fechaFormateada;
+          document.getElementById("ticket-hora-entrada").textContent = hora;
+          document.getElementById("ticket-hora-salida").textContent =
+            horaSalida;
+          document.getElementById("ticket-parking-spot").textContent = cajon;
+          document.getElementById("ticket-vehicle-type").textContent = vehiculo;
+          document.getElementById("ticket-matricula").textContent = matricula;
+
+          // Mostrar el modal
+          ticketModal.style.display = "flex";
+        });
+
+        // Cerrar el modal
+        closeModal.addEventListener("click", function () {
+          ticketModal.style.display = "none";
+        });
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.addEventListener("click", function (event) {
+          if (event.target == ticketModal) {
+            ticketModal.style.display = "none";
+          }
+        });
+
+        // Configurar el botón para guardar como PDF
+        document
+          .getElementById("savePdfButton")
+          .addEventListener("click", function () {
+            // Ocultar el botón y el botón de cerrar para la impresión
+            this.style.display = "none";
+            document.querySelector(".close-modal").style.display = "none";
+
+            // Usar la API de impresión del navegador para guardar como PDF
+            window.print();
+
+            // Mostrar los botones nuevamente después de la impresión
+            setTimeout(() => {
+              this.style.display = "block";
+              document.querySelector(".close-modal").style.display = "block";
+            }, 1000);
+          });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,878 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 1.0;
+    background-color: #535353;
+    color: #535353;
+    
+}
+
+/*Bienvenida*/
+
+.welcome-intro {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    max-width: 3000px;
+    margin: 30px auto;
+}
+
+.welcome-intro p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 25px;
+    text-align: left;
+    font-weight: 400;
+}
+
+.welcome-intro p:first-child {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #0267cc;
+    margin-bottom: 30px;
+}
+
+.closing-statement {
+    background: #f8f9fa;
+    color: #2c3e50 !important;
+    padding: 25px;
+    border: 1px solid #e9ecef;
+    border-left: 4px solid #6c757d;
+    font-size: 1.1em !important;
+    font-weight: 500 !important;
+    font-style: italic;
+    margin-top: 30px;
+    border-radius: 0;
+}
+
+/* Page Wrapper */
+#page-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Header - Ahora siempre con color azul */
+#header {
+    background: linear-gradient(to right, #000000, #63676d); /* Mantenemos el azul en el header */
+    padding: 1.5rem;
+    width: 100%;
+    z-index: 10000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-logo {
+    height: 50px;
+    width: auto;
+    border-radius: 5px;
+}
+
+#header h1 {
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#header a {
+    color: #f5f1f1; /* Color de las letras de menu*/
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#header a:hover {
+    color: #ffffff; /* Color de las letras de menu*/
+}
+
+#header nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgb(7, 6, 6);
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+#header nav a:hover {
+    background-color: rgba(0, 0, 0, 0.407); /*Color del boton de menu*/
+}
+
+/* Menu - Mejorado */
+#menu {
+    background: rgba(42, 47, 55, 0.95);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    top: 0;
+    right: -300px;
+    z-index: 10001;
+    padding: 2rem;
+    transition: right 0.5s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+#menu.active {
+    right: 0;
+}
+
+#menu h2 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 1.75rem; /* Tamaño del titulo del menu */
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.133);
+}
+
+#menu .links {
+    list-style: none;
+    padding: 0;
+}
+
+#menu .links li {
+    margin-bottom: 1rem;
+}
+
+#menu .links a {
+    color: rgba(255, 255, 255, 0.555);
+    text-decoration: none;
+    font-size: 1.3rem; /* Tamaño de las letras del menu */
+    display: block;
+    padding: 0.5rem 0;
+    transition: 0.3s ease;
+}
+
+#menu .links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+#menu .close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+#menu .close:hover {
+    color: #fff;
+}
+
+/* Banner - Rediseñado para poner la imagen abajo del menú */
+#banner {
+    background: transparent; /* Quitamos el fondo azul */
+    color: #fff;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    margin-top: 84px; /* Espacio para el header fijo */
+    height: 500px; /* Altura para la imagen */
+    overflow: hidden;
+}
+
+/* Imagen del banner */
+.banner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/FondoAdmin.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+}
+
+#banner .inner {
+    position: relative;
+    z-index: 1;
+    
+    margin: 0 auto;
+    padding: 10rem 2rem;
+    background: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente para el texto */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#banner h2 {
+    margin-top: 0;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+.login-btn {
+    background: linear-gradient(45deg, #092d81, #35c2ff);/* Color de fondo */
+    color: rgb(243, 235, 235);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    width: 12%; /* Ancho del botón */
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px; /* Espacio entre los botones */
+}
+.login-btn:hover {
+    background-color: #386b8e;
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  /* Sombra al hacer hover */
+}
+
+/* Wrapper y Secciones */
+.wrapper {
+    padding: 6rem 2rem;
+    position: relative;
+}
+
+.wrapper .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wrapper.spotlight {
+    background-color: #fff;  /*Quien sabe para que es*/
+}
+
+
+.wrapper.spotlight.style1 {
+    background-color: #fff; /*Quien sabe para que es*/
+}
+
+.wrapper.spotlight.style2 {
+    background-color: #555555d1; /*Color del Fondo de Ubicacion "La Palma"*/; 
+}
+
+.wrapper h2 {
+    color: #ffffff; /* PROMOCIONES*/
+    margin-top: 0;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.wrapper h2:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    height: 3px;
+    background-color: #ffffff; /* linea de registro*/
+}
+
+.wrapper p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #555; /* Texto de los servicios*/
+}
+
+.wrapper a.special, .wrapper a.button {
+    display: inline-block;
+    background-color: #2c3e50; /* Color de los botones*/
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.64);
+}
+
+.wrapper a.special:hover, .wrapper a.button:hover {
+    background-color: #386b8e; /* Color de selecion de botones*/
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* color del 3D*/
+}
+
+/* Sección de servicios */
+#servicios {
+    padding: 3rem 0;
+    background-color: #c4c3c3;
+    max-width: 100%;
+    padding: 4rem 2rem;
+}
+
+#servicios h1 {
+    font-size: 2.5rem;
+    color: #243240; /* Nuestros servicios*/
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    font-weight: 600;
+}
+
+.servicios-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.servicio-col {
+    flex: 5; /* Ancho de las columnas de servicios */
+    min-width: 300px; /* Ancho mínimo de las columnas */
+    max-width: 50%; /* Ancho máximo de las columnas */
+    margin-bottom: 2rem; /* Espacio entre las filas */
+    display: flex; 
+    flex-direction: column;
+}
+
+.servicio-imagen {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.servicio-info h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333; /* Color de los Servicios*/
+    margin-bottom: 0.5rem;
+}
+
+.servicio-info .precio {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000; /* Color los precios*/
+    margin-bottom: 0.75rem;
+}
+
+.servicio-info .descripcion {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #000000;
+}
+
+
+/* Features Section */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.features article {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.features article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.features article .image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.features article .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.features article h3 {
+    padding: 1.5rem 1.5rem 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.features article p {
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.features article a.special {
+    margin: 0 1.5rem 1.5rem;
+}
+
+/* Footer */
+#footer {
+    background: #2c3e50;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 5rem 2rem;
+    position: relative;
+}
+
+#footer .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#footer h2 {
+    color: #fff;
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+#footer h2:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #3498db; /* Color de linea de contacto*/
+}
+
+#footer p {
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+/* Lista de contacto */
+.contact {
+    list-style: none;
+    padding: 0;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact li {
+    margin-bottom: 1rem;
+    padding-left: 30px;
+    position: relative;
+}
+
+.contact li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #910303;
+}
+
+/* Copyright */
+.copyright {
+    list-style: none;
+    padding: 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(204, 210, 211, 0.893);
+    padding-top: 1.5rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+.copyright a {
+    
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.copyright a:hover {
+    color: #3498db;
+}
+
+/* Estilos para la sección de ubicación */
+#ubicacion {
+    padding: 4rem 2rem;
+}
+
+.ubicacion-container {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.mapa-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+.mapa-imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.mapa-link {
+    display: block;
+    height: 100%;
+}
+
+.mapa-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mapa-wrapper:hover .mapa-overlay {
+    opacity: 1;
+}
+
+.mapa-wrapper:hover .mapa-imagen {
+    transform: scale(1.05);
+}
+
+.ver-mapa-btn {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.ver-mapa-btn:hover {
+    background-color: #3498db;
+}
+
+.ubicacion-info {
+    padding: 2rem;
+}
+
+.direccion-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.direccion-icono {
+    background-color: #2c3e50;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.direccion-titulo {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.direccion-detalles {
+    color: #666;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+.info-detalles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detalle-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.detalle-icono {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.botones-accion {
+    display: flex;
+    gap: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.boton-accion {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+}
+
+.boton-accion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.boton-como-llegar {
+    background-color: #b73939;
+}
+
+.boton-como-llegar:hover {
+    background-color: #db3434a2;
+}
+
+.boton-llamar {
+    background-color: #34a853;
+}
+
+.boton-llamar:hover {
+    background-color: #34db55a2;
+}
+
+.icono-boton {
+    margin-right: 10px;
+}
+
+.mapa-iframe {
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 300px;
+}
+
+/* Estilos para promociones seleccionables */
+.promociones-seleccionables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.promocion-item {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.promocion-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.promocion-imagen {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.promocion-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.promocion-container:hover .promocion-overlay {
+    opacity: 1;
+}
+
+.promocion-container:hover .promocion-imagen {
+    transform: scale(1.05);
+}
+
+/*Boton de promociones*/
+.btn-seleccionar {
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-seleccionar:hover {
+    background-color: #536672;
+}
+
+.mensaje-confirmacion {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2ecc71;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+/* Clase adicional para mostrar el mensaje cuando se activa */
+.promocion-item.seleccionada .mensaje-confirmacion {
+    transform: translateY(0);
+}
+/* Logout link */
+.logout {
+    color: #dc3535 !important;
+}
+
+/* Ajustes adicionales para responsividad */
+@media screen and (max-width: 768px) {
+    .promociones-seleccionables {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Estilos responsive para la sección de ubicación */
+@media screen and (max-width: 768px) {
+    .botones-accion {
+        flex-direction: column;
+    }
+    
+    .info-detalles {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .direccion-container {
+        flex-direction: column;
+    }
+    
+    .direccion-icono {
+        margin-bottom: 15px;
+    }
+}
+/*Aqui se acaba la seccion de la ubicacion*/
+
+/* Responsive */
+@media screen and (max-width: 980px) {
+    .servicio-col {
+        max-width: 48%;
+    }
+    
+    #banner {
+        height: 400px;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    #banner {
+        height: 350px;
+        margin-top: 70px;
+    }
+    
+    #banner .inner {
+        padding: 6rem 1.5rem;
+    }
+    
+    #banner h2 {
+        font-size: 2.5rem;
+    }
+    
+    .wrapper {
+        padding: 4rem 1.5rem;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact {
+        grid-template-columns: 1fr;
+    }
+    
+    .servicio-col {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #banner {
+        height: 300px;
+    }
+    
+    #banner h2 {
+        font-size: 2rem;
+    }
+    
+    #banner p {
+        font-size: 1rem;
+    }
+}
+
+
+        /*Promociones*/
+
+        

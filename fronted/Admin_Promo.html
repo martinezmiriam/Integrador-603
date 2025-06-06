@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador - Promociones | Servicios de Autolavado O.C</title>
+    <link rel="stylesheet" href="css/Admin_Promo.css">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="img/LogoOficial.png" alt="Logo Oficial" class="header-logo">
+                <h1><a href="index.html">Admin. Estacionamiento y Autolavado O.C</a></h1>
+            </div>
+            <nav>
+                <a href="#menu" class="menu-toggle">Menu</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu Admin</h2>
+            <ul class="links">
+                <li><a href="admin.html">Inicio</a></li>
+                        <li><a href="Admin_Promo.html">Promociones</a></li>
+						<li><a href="carritoAdmin.html">Servicios</a></li>
+						<li><a href="Reservas.html">Reserva</a></li>
+						<li><a href="ayuda.html">Guia de ayuda</a></li>
+            </ul>
+            <a href="#" class="close">&times;</a>
+        </div>
+    </nav>
+
+    <div class="banner-container">
+        <img src="img/Promocion/impala.png" alt="Servicios de Autolavado" class="banner-image">
+        <div class="banner-text">
+            <div class="title-container">
+                <h1 class="main-title editable-text" data-field="banner-title">Nuestras Promociones Especiales</h1>
+            </div>
+            <p class="editable-text" data-field="banner-subtitle">Las mejores promociones que puede conseguir</p>
+        </div>
+    </div>
+
+    <!-- Panel de Control Admin -->
+    <div class="admin-controls">
+        <div class="admin-toolbar">
+            <h2><i class="fas fa-cog"></i> Panel de Administración</h2>
+            <div class="toolbar-buttons">
+                <button class="btn-save" onclick="saveChanges()">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+                <button class="btn-preview" onclick="togglePreview()">
+                    <i class="fas fa-eye"></i> Vista Previa
+                </button>
+                <button class="btn-reset" onclick="resetChanges()">
+                    <i class="fas fa-undo"></i> Resetear
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMOCIONES -->
+    <div class="container">
+        <div class="promotions-grid">
+            <!-- Promoción 1: Lavado Básico -->
+            <div class="promotion-card" data-promotion="basico">
+                <div class="admin-card-controls">
+                </div>
+                <div class="card-content">
+                    <div class="title-edit-group">
+                        <h2 class="service-title">
+                            <span class="editable-text" data-field="basico-title-1">Lavado</span><br>
+                            <span class="highlight editable-text" data-field="basico-title-2">BÁSICO</span>⭐<br>
+                        </h2>
+                    </div>
+                    
+                    <div class="service-images">
+                        <div class="service-item">
+                            <div class="service-icon">🫧</div>
+                            <span class="editable-text" data-field="basico-service-1">Lavado exterior con Champu Especiales</span>
+                            <button class="edit-btn service-edit" onclick="editService('basico', 1)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🪟</div>
+                            <span class="editable-text" data-field="basico-service-2">Limpieza rapida de Ventana</span>
+                            <button class="edit-btn service-edit" onclick="editService('basico', 2)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🌀</div>
+                            <span class="editable-text" data-field="basico-service-3">Aspirado basico de interior</span>
+                            <button class="edit-btn service-edit" onclick="editService('basico', 3)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🍃</div>
+                            <span class="editable-text" data-field="basico-service-4">Aromatizante de sabores</span>
+                            <button class="edit-btn service-edit" onclick="editService('basico', 4)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="car-image">
+                        <img src="img/Promocion/azul_agua.png" alt="Carro Básico" data-promotion="basico">
+                        <div class="image-overlay">
+                            <button class="change-image-btn" onclick="changeImage('basico')">
+                                <i class="fas fa-camera"></i> Cambiar Imagen
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <button class="book-btn">Reservar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promoción 2: Lavado Premium -->
+            <div class="promotion-card" data-promotion="premium">
+                <div class="admin-card-controls">
+                </div>
+                <div class="card-content">
+                    <div class="title-edit-group">
+                        <h2 class="service-title">
+                            <span class="editable-text" data-field="premium-title-1">Lavado</span><br>
+                            <span class="highlight editable-text" data-field="premium-title-2">PREMIUM</span>💎<br>
+                        </h2>
+                    </div>
+                    
+                    <div class="service-images">
+                        <div class="service-item">
+                            <div class="service-icon">🚗</div>
+                            <span class="editable-text" data-field="premium-service-1">Limpieza profunda exterior e interior</span>
+                            <button class="edit-btn service-edit" onclick="editService('premium', 1)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🌟</div>
+                            <span class="editable-text" data-field="premium-service-2">Tratamientos protectores para mas brilo</span>
+                            <button class="edit-btn service-edit" onclick="editService('premium', 2)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">⚙️</div>
+                            <span class="editable-text" data-field="premium-service-3">Limpieza de Motor</span>
+                            <button class="edit-btn service-edit" onclick="editService('premium', 3)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🧼</div>
+                            <span class="editable-text" data-field="premium-service-4">Pulido y Encerado</span>
+                            <button class="edit-btn service-edit" onclick="editService('premium', 4)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="car-image">
+                        <img src="img/Promocion/pulido_negro.png" alt="Carro Premium" data-promotion="premium">
+                        <div class="image-overlay">
+                            <button class="change-image-btn" onclick="changeImage('premium')">
+                                <i class="fas fa-camera"></i> Cambiar Imagen
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <button class="book-btn">Reservar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promoción 3: Lavado VIP -->
+            <div class="promotion-card" data-promotion="vip">
+                <div class="card-content">
+                    <div class="title-edit-group">
+                        <h2 class="service-title">
+                            <span class="editable-text" data-field="vip-title-1">Lavado</span><br>
+                            <span class="highlight editable-text" data-field="vip-title-2">VIP</span>🏆<br>
+                        </h2>
+                    </div>
+                    
+                    <div class="service-images">
+                        <div class="service-item">
+                            <div class="service-icon">🌈</div>
+                            <span class="editable-text" data-field="vip-service-1">Pulido y Correccion de Pintura</span>
+                            <button class="edit-btn service-edit" onclick="editService('vip', 1)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">💧</div>
+                            <span class="editable-text" data-field="vip-service-2">Limpieza rapida de ventanas, alfombras y tapetes</span>
+                            <button class="edit-btn service-edit" onclick="editService('vip', 2)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🛞</div>
+                            <span class="editable-text" data-field="vip-service-3">Limpieza detallada de llantas</span>
+                            <button class="edit-btn service-edit" onclick="editService('vip', 3)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-icon">🛡️</div>
+                            <span class="editable-text" data-field="vip-service-4">Servicios de Sanitizacion y eliminacion de olores</span>
+                            <button class="edit-btn service-edit" onclick="editService('vip', 4)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="car-image">
+                        <img src="img/Promocion/llantas.png" alt="Carro VIP" data-promotion="vip">
+                        <div class="image-overlay">
+                            <button class="change-image-btn" onclick="changeImage('vip')">
+                                <i class="fas fa-camera"></i> Cambiar Imagen
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <button class="book-btn">Reservar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar texto -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Texto</h2>
+            <textarea id="editTextarea" rows="4" cols="50"></textarea>
+            <div class="modal-buttons">
+                <button class="btn-primary" onclick="saveTextEdit()">Guardar</button>
+                <button class="btn-secondary" onclick="cancelEdit()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar imagen -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cambiar Imagen</h2>
+            <div class="image-upload-area">
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                <div class="upload-zone" onclick="document.getElementById('imageInput').click();">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Haz clic para subir una imagen</p>
+                    <p class="file-info">Formatos: JPG, PNG, GIF (máx. 5MB)</p>
+                </div>
+                <div id="imagePreview" class="image-preview" style="display: none;">
+                    <img id="previewImg" src="" alt="Vista previa">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-primary" onclick="saveImageChange()">Guardar Imagen</button>
+                <button class="btn-secondary" onclick="cancelImageEdit()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación de guardado -->
+    <div id="saveNotification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span>Cambios guardados exitosamente</span>
+    </div>
+
+    <footer>
+        <p>Todos los derechos Reservados a O.C - Panel de Administración</p>
+    </footer>
+
+    <script>
+        // Variables globales
+        let currentEditingField = null;
+        let currentEditingPromotion = null;
+        let originalContent = {};
+        let hasUnsavedChanges = false;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú de navegación
+            const menuToggle = document.querySelector('.menu-toggle');
+            const closeButton = document.querySelector('#menu .close');
+            const menu = document.querySelector('#menu');
+
+            menuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                menu.classList.add('active');
+            });
+
+            closeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                menu.classList.remove('active');
+            });
+
+            // Guardar el contenido original
+            saveOriginalContent();
+
+            // Event listeners para modales
+            setupModalEvents();
+
+            // Event listener para subir imágenes
+            setupImageUpload();
+        });
+
+        function saveOriginalContent() {
+            const editableElements = document.querySelectorAll('.editable-text');
+            editableElements.forEach(element => {
+                const field = element.getAttribute('data-field');
+                originalContent[field] = element.textContent;
+            });
+
+            const images = document.querySelectorAll('.car-image img');
+            images.forEach(img => {
+                const promotion = img.getAttribute('data-promotion');
+                originalContent[promotion + '-image'] = img.src;
+            });
+        }
+
+        function editText(field) {
+            const element = document.querySelector(`[data-field="${field}"]`);
+            const modal = document.getElementById('editModal');
+            const textarea = document.getElementById('editTextarea');
+            
+            currentEditingField = field;
+            textarea.value = element.textContent;
+            modal.style.display = 'block';
+        }
+
+        function editTitle(promotion) {
+            const title1 = document.querySelector(`[data-field="${promotion}-title-1"]`);
+            const title2 = document.querySelector(`[data-field="${promotion}-title-2"]`);
+            
+            const modal = document.getElementById('editModal');
+            const textarea = document.getElementById('editTextarea');
+            
+            currentEditingField = promotion + '-title';
+            textarea.value = title1.textContent + '\n' + title2.textContent;
+            modal.style.display = 'block';
+        }
+
+        function editService(promotion, serviceNumber) {
+            const field = `${promotion}-service-${serviceNumber}`;
+            editText(field);
+        }
+
+        function saveTextEdit() {
+            const textarea = document.getElementById('editTextarea');
+            const newText = textarea.value;
+
+            if (currentEditingField.includes('-title')) {
+                const lines = newText.split('\n');
+                const promotion = currentEditingField.replace('-title', '');
+                
+                const title1 = document.querySelector(`[data-field="${promotion}-title-1"]`);
+                const title2 = document.querySelector(`[data-field="${promotion}-title-2"]`);
+                
+                if (lines[0]) title1.textContent = lines[0];
+                if (lines[1]) title2.textContent = lines[1];
+            } else {
+                const element = document.querySelector(`[data-field="${currentEditingField}"]`);
+                element.textContent = newText;
+            }
+
+            hasUnsavedChanges = true;
+            document.getElementById('editModal').style.display = 'none';
+            showSaveButton();
+        }
+
+        function changeImage(promotion) {
+            currentEditingPromotion = promotion;
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        function setupImageUpload() {
+            const imageInput = document.getElementById('imageInput');
+            const previewImg = document.getElementById('previewImg');
+            const imagePreview = document.getElementById('imagePreview');
+
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function saveImageChange() {
+            const previewImg = document.getElementById('previewImg');
+            if (previewImg.src && currentEditingPromotion) {
+                const targetImg = document.querySelector(`[data-promotion="${currentEditingPromotion}"]`);
+                targetImg.src = previewImg.src;
+                
+                hasUnsavedChanges = true;
+                document.getElementById('imageModal').style.display = 'none';
+                showSaveButton();
+                
+                // Reset preview
+                document.getElementById('imagePreview').style.display = 'none';
+                document.getElementById('imageInput').value = '';
+            }
+        }
+
+        function cancelEdit() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function cancelImageEdit() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('imageInput').value = '';
+        }
+
+        function setupModalEvents() {
+            const modals = document.querySelectorAll('.modal');
+            const closeBtns = document.querySelectorAll('.close');
+
+            closeBtns.forEach(btn => {
+                btn.onclick = function() {
+                    this.closest('.modal').style.display = 'none';
+                };
+            });
+
+            window.onclick = function(event) {
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            };
+        }
+
+        function showSaveButton() {
+            const saveBtn = document.querySelector('.btn-save');
+            saveBtn.style.animation = 'pulse 1s infinite';
+            saveBtn.style.background = 'linear-gradient(45deg, #ff6b6b, #ff8e8e)';
+        }
+
+        function saveChanges() {
+            // Aquí iría la lógica para guardar los cambios en el servidor
+            console.log('Guardando cambios...');
+            
+            hasUnsavedChanges = false;
+            
+            // Mostrar notificación
+            const notification = document.getElementById('saveNotification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+
+            // Resetear el botón de guardar
+            const saveBtn = document.querySelector('.btn-save');
+            saveBtn.style.animation = 'none';
+            saveBtn.style.background = 'linear-gradient(45deg, #092d81, #35c2ff)';
+        }
+
+        function togglePreview() {
+            const editBtns = document.querySelectorAll('.edit-btn, .admin-card-controls, .admin-controls');
+            const isPreview = document.body.classList.contains('preview-mode');
+            
+            if (isPreview) {
+                document.body.classList.remove('preview-mode');
+                editBtns.forEach(btn => btn.style.display = '');
+            } else {
+                document.body.classList.add('preview-mode');
+                editBtns.forEach(btn => btn.style.display = 'none');
+            }
+        }
+
+        function resetChanges() {
+            if (confirm('¿Estás seguro de que quieres resetear todos los cambios?')) {
+                // Restaurar textos
+                Object.keys(originalContent).forEach(field => {
+                    if (field.includes('-image')) {
+                        const promotion = field.replace('-image', '');
+                        const img = document.querySelector(`[data-promotion="${promotion}"]`);
+                        if (img) img.src = originalContent[field];
+                    } else {
+                        const element = document.querySelector(`[data-field="${field}"]`);
+                        if (element) element.textContent = originalContent[field];
+                    }
+                });
+
+                hasUnsavedChanges = false;
+                
+                // Resetear el botón de guardar
+                const saveBtn = document.querySelector('.btn-save');
+                saveBtn.style.animation = 'none';
+                saveBtn.style.background = 'linear-gradient(45deg, #092d81, #35c2ff)';
+            }
+        }
+
+        // Advertir sobre cambios no guardados
+        window.addEventListener('beforeunload', function(e) {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
