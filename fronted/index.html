@@ -1,129 +1,152 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .video-background {
-            position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            filter: brightness(0.7); /* Oscurece el video para mejorar legibilidad */
-        }
-        .login-container {
-            background-color: rgba(70, 62, 62, 0.322); /* Fondo semitransparente de inicio */
-            border-radius: 15px;
-            width: 350px;
-            padding: 30px;
-            text-align: center;
-            position: relative; 
-            
-            /* Efecto de sombra 3D */
-            box-shadow: 
-                0 10px 20px rgba(255, 255, 255, 0.1),
-                0 15px 40px rgba(74, 74, 74, 0.2),
-                0 20px 60px rgba(11, 11, 11, 0.1);
-            
-            /* Transformación sutil para efecto 3D */
-            transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
-            transition: all 0.3s ease;
-        }
-        .login-container::before {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 10px;
-            right: 10px;
-            height: 10px;
-            background: rgba(37, 34, 34, 0.43);
-            border-radius: 50%;
-            filter: blur(10px);
-            z-index: -1;
-        }
-        .login-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-        .login-form input:focus {
-            outline: none;
-            border-color: #b9bab9; /* Color de borde al enfocar */
-            box-shadow: 0 0 0 3px rgba(106,17,203,0.1);
-        }
-        .login-btn {
-            background-color: #000000b2; /* Color de fondo */
-            color: rgb(243, 235, 235);
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 15px; /* Espacio entre los botones */
-        }
-        .login-btn:hover {
-            background-color: #6e737b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(237, 231, 231, 0.2); /* Sombra al hacer hover */
-        }
-        .create-btn {
-            background-color: #4a4a4ab2; /* Color de fondo diferente para el botón crear cuenta */
-            color: rgb(243, 235, 235);
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
-            margin-top: 15px;
-        }
-        .create-btn:hover {
-            background-color: #828381;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(237, 231, 231, 0.2);
-        }
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            margin: 15px 0;
-            font-size: 0.9em;
-        }
-        h2 {
-            color: #c3c3bb;
-            margin-bottom: 20px;
-        }
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.9em;
-            margin-top: 10px;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      filter: brightness(0.7);
+      /* Oscurece el video para mejorar legibilidad */
+    }
+
+    .login-container {
+      background-color: rgba(70, 62, 62, 0.322);
+      /* Fondo semitransparente de inicio */
+      border-radius: 15px;
+      width: 350px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+
+      /* Efecto de sombra 3D */
+      box-shadow:
+        0 10px 20px rgba(255, 255, 255, 0.1),
+        0 15px 40px rgba(74, 74, 74, 0.2),
+        0 20px 60px rgba(11, 11, 11, 0.1);
+
+      /* Transformación sutil para efecto 3D */
+      transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
+      transition: all 0.3s ease;
+    }
+
+    .login-container::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 10px;
+      right: 10px;
+      height: 10px;
+      background: rgba(37, 34, 34, 0.43);
+      border-radius: 50%;
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      border-color: #b9bab9;
+      /* Color de borde al enfocar */
+      box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+    }
+
+    .login-btn {
+      background-color: #000000b2;
+      /* Color de fondo */
+      color: rgb(243, 235, 235);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 15px;
+      /* Espacio entre los botones */
+    }
+
+    .login-btn:hover {
+      background-color: #6e737b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(237, 231, 231, 0.2);
+      /* Sombra al hacer hover */
+    }
+
+    .create-btn {
+      background-color: #4a4a4ab2;
+      /* Color de fondo diferente para el botón crear cuenta */
+      color: rgb(243, 235, 235);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      margin-top: 15px;
+    }
+
+    .create-btn:hover {
+      background-color: #828381;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(237, 231, 231, 0.2);
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      font-size: 0.9em;
+    }
+
+    h2 {
+      color: #c3c3bb;
+      margin-bottom: 20px;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.9em;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
 </head>
+<script src="config.js"></script>
+
 <body>
   <video autoplay loop muted playsinline class="video-background">
     <source src="../img/Fondo_inicioS.mp4" type="video/mp4" />
@@ -132,7 +155,7 @@
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
     <form class="login-form" id="loginForm">
-      <input type="text" id="usuario" placeholder="Usuario" required autocomplete="username" />
+      <input type="text" id="correo" placeholder="Correo Electrónico" required autocomplete="username" />
       <input type="password" id="password" placeholder="Contraseña" required autocomplete="current-password" />
 
       <div class="remember-forgot">
@@ -150,42 +173,44 @@
     document.getElementById("loginForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const usuario = document.getElementById("usuario").value;
+      const correo = document.getElementById("correo").value.trim();
       const password = document.getElementById("password").value;
 
-      console.log("Enviando datos de login:", { usuario, password });
+      if (!correo || !password) {
+        alert("Correo y contraseña son obligatorios");
+        return;
+      }
 
-      fetch("http://localhost:3000/api/usuarios/login", {
+      fetch(`${API_URL}/usuarios/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usuario, password }),
+        body: JSON.stringify({ correo, password }),
       })
-        .then((response) => {
+        .then(response => {
           if (!response.ok) {
-            return response.json().then((err) => Promise.reject(err));
+            return response.json().then(err => Promise.reject(err));
           }
           return response.json();
         })
-        .then((data) => {
-          console.log("Login exitoso:", data);
+        .then(data => {
+            localStorage.setItem("token", data.token);
+
           alert("Bienvenido " + data.user.nombre);
 
-          const usuarioLower = data.user.usuario.toLowerCase().trim();
-
-if (usuarioLower.includes("admin")) {
-  window.location.href = "admin.html";
-} else {
-  window.location.href = "cliente.html";
-}
-
+          if (data.esAdmin) {
+            window.location.href = "admin.html";
+          } else {
+            window.location.href = "cliente.html";
+          }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error("Error al iniciar sesión:", error);
           const errorMessage = document.getElementById("errorMessage");
           errorMessage.style.display = "block";
           errorMessage.textContent = error.message || "Usuario o contraseña incorrectos.";
         });
     });
+
   </script>
 </body>
 

@@ -1,98 +1,42 @@
+// index.js
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-const usuarioRoutes = require('./routes/usuarios.routes');
-const createUser = require('./routes/users');
-
+const userRoutes = require('./routes/users'); // Tus rutas ya modulares
+const autolavadoRoutes = require('./routes/autolavadoRoutes');// ruta para autolavado
+const serviciosRoutes = require('./routes/serviciosRoutes');// ruta para autolavado
+const compraRoutes = require("./routes/compraRoutes");
+const reservas = require("./routes/reserva");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para permitir CORS
-const corsOptions = {
-  origin: "http://localhost:3000/", // Permite solicitudes desde este origen
-  methods: ["GET", "POST"], // Permite estos métodos
-  allowedHeaders: ["Content-Type"], // Permite este encabezado
-};
-
-app.use(cors(corsOptions)); // Aquí defines CORS correctamente
-
-// Middleware para manejar JSON
-app.use(express.json()); // Solo una vez, aquí
-
-// Middleware para manejar URL-encoded
+// Middleware
+app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Rutas de usuarios
-app.use('/api/usuarios', usuarioRoutes);
-app.use('/api/usuarios', createUser);
-
-
-
-
-// Servir archivos estáticos
+// Frontend (ajusta la carpeta según tu estructura)
 app.use(express.static(path.join(__dirname, '../fronted')));
+app.use("/img/Servicios", express.static(path.join(__dirname, "../fronted/img/Servicios")));
+app.use('/img/Promocion', express.static(path.join(__dirname, 'public/promociones-img')));
+app.use("/img/Promocion", express.static(path.join(__dirname, "../fronted/img/Promocion")));
 
-// Ruta raíz para verificar que el servidor está funcionando
+
+// Rutas API
+app.use('/api/usuarios', userRoutes);
+app.use("/api/reservas", reservas);
+app.use('/api/servicios', serviciosRoutes);
+app.use('/api/autolavado', autolavadoRoutes);
+app.use("/api/compras", compraRoutes);
+
+
+// Ruta base de prueba
 app.get('/api', (req, res) => {
-  res.json({ message: 'Servidor de registro de usuarios activo' });
+  res.json({ message: 'Servidor activo' });
 });
 
-// Ruta para iniciar sesión
-app.post('/api/usuarios/login', (req, res) => {
-  try {
-    const { correo_electronico, contrasena } = req.body;
-
-    // Verificar si los campos están presentes
-    if (!correo_electronico || !contrasena) {
-      return res.status(400).json({
-        success: false,
-        message: 'Por favor ingresa correo electrónico y contraseña',
-      });
-    }
-
-    // Buscar el usuario por correo electrónico
-    const user = usuarios.find(user => user.correo === correo_electronico);
-
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: 'Usuario no encontrado',
-      });
-    }
-
-    // Verificar la contraseña
-    if (user.password !== contrasena) {
-      return res.status(400).json({
-        success: false,
-        message: 'Contraseña incorrecta',
-      });
-    }
-
-    // Si todo está bien, responder con éxito
-    res.json({
-      success: true,
-      message: 'Inicio de sesión exitoso',
-      user: {
-        nombre: user.nombre,
-        correo: user.correo,
-      },
-    });
-
-  } catch (error) {
-    console.error('Error en loginUser:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error en el servidor',
-      error: error.message,
-    });
-  }
-});
-
-
-
-// Iniciar el servidor
+// Inicio del servidor
 app.listen(PORT, () => {
-  console.log(`Servidor ejecutándose en el puerto ${PORT}`);
-  console.log(`Accede a la aplicación en: http://localhost:${PORT}`);
+  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });

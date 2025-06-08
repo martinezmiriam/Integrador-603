@@ -1,338 +1,363 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Estacionamiento y Autolavado O.C</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="css/admin_styless.css" />
-	</head>
-	<body>
 
-		<!-- Page Wrapper -->
-		<div id="page-wrapper">
+<head>
+    <title>Estacionamiento y Autolavado O.C</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="css/admin_styless.css" />
+</head>
 
-			<!-- Header - Ahora solo con color azul -->
-			<header id="header">
-				<div class="header-content">
-					<div class="logo-container">
-						<img src="img/LogoOficial.png" alt="Logo Oficial" class="header-logo">
-						<h1><a href="index.html">Admin.Estacionamiento y Autolavado O.C</a></h1>
-					</div>
-					<nav>
-						<a href="#menu">Menu</a>
-					</nav>
-				</div>
-			</header>
+<body>
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header - Ahora solo con color azul -->
+        <header id="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="img/LogoOficial.png" alt="Logo Oficial" class="header-logo">
+                    <h1><a href="index.html">Admin.Estacionamiento y Autolavado O.C</a></h1>
+                </div>
+                <nav>
+                    <a href="#menu">Menu</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="admin.html">Inicio</a></li>
+                <li><a href="Admin_Promo.html">Promociones</a></li>
+                <li><a href="carritoAdmin.html">Servicios</a></li>
+                <li><a href="Reservas.html">Reserva</a></li>
+                <li><a href="ayuda.html">Guia de ayuda</a></li>
+                <li><a href="index.html" class="logout">Cerrar Sesión</a></li>
+
+            </ul>
+            <a href="#" class="close">&times;</a>
+        </div>
+    </nav>
+
+    <!-- Banner - Imagen principal debajo del menú -->
+    <section id="banner">
+        <div class="banner-image"></div>
+        <div class="inner">
+            <h2>Bienvenido el Gestion del Contenido</h2>
+        </div>
+    </section>
+    </div>
+    </header>
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Control Tabs -->
+        <div class="control-tabs">
+            <button class="tab-btn active" data-tab="servicios">
+                <i class="fas fa-spray-can"></i>
+                <span>Servicios</span>
+            </button>
+            <button class="tab-btn" data-tab="contacto">
+                <i class="fas fa-phone"></i>
+                <span>Contacto</span>
+            </button>
+            <button class="tab-btn" data-tab="ubicacion">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Ubicación</span>
+            </button>
         </div>
 
-			<!-- Menu -->
-			<nav id="menu">
-				<div class="inner">
-					<h2>Menu</h2>
-					<ul class="links">
-						<li><a href="admin.html">Inicio</a></li>
-                        <li><a href="Admin_Promo.html">Promociones</a></li>
-						<li><a href="carritoAdmin.html">Servicios</a></li>
-						<li><a href="Reservas.html">Reserva</a></li>
-						<li><a href="ayuda.html">Guia de ayuda</a></li>
-					</ul>
-					<a href="#" class="close">&times;</a>
-				</div>
-			</nav>
+        <!-- Tab Contents -->
+        <div class="tab-content">
+            <!-- Servicios Tab -->
+            <div id="servicios" class="tab-panel active">
+                <div class="panel-header">
+                    <h2><i class="fas fa-car-wash"></i>Servicios</h2>
+                    <p>Configura los precios y descripciones de tus servicios</p>
+                </div>
 
-			<!-- Banner - Imagen principal debajo del menú -->
-			<section id="banner">
-				<div class="banner-image"></div>
-				<div class="inner">
-					<h2>Bienvenido el Gestion del Contenido</h2>
-				</div>
-            </section>
-       </div>
-        </header>
-        <!-- Main Content -->
-        <main id="main-content">
+                <div class="services-grid">
+                    <!-- Servicio 1 -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <h3>Limpieza Profunda</h3>
+                        <div class="form-group">
+                            <label for="servicio1_precio">
+                                <i class="fas fa-dollar-sign"></i> Precio
+                            </label>
+                            <input type="number" id="servicio1_precio" placeholder="170" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio1_descripcion">
+                                <i class="fas fa-align-left"></i> Descripción
+                            </label>
+                            <textarea id="servicio1_descripcion" rows="3"
+                                placeholder="Descripción del servicio..."></textarea>
+                        </div>
+                        <button class="btn-save" onclick="guardarServicio(1)">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
 
-            <!-- Control Tabs -->
-            <div class="control-tabs">
-                <button class="tab-btn active" data-tab="servicios">
-                    <i class="fas fa-spray-can"></i>
-                    <span>Servicios</span>
-                </button>
-                <button class="tab-btn" data-tab="contacto">
-                    <i class="fas fa-phone"></i>
-                    <span>Contacto</span>
-                </button>
-                <button class="tab-btn" data-tab="ubicacion">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Ubicación</span>
-                </button>
+                    <!-- Servicio 2 -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Pulido de Faros</h3>
+                        <div class="form-group">
+                            <label for="servicio2_precio">
+                                <i class="fas fa-dollar-sign"></i> Precio
+                            </label>
+                            <input type="number" id="servicio2_precio" placeholder="500" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio2_descripcion">
+                                <i class="fas fa-align-left"></i> Descripción
+                            </label>
+                            <textarea id="servicio2_descripcion" rows="3"
+                                placeholder="Descripción del servicio..."></textarea>
+                        </div>
+                        <button class="btn-save" onclick="guardarServicio(2)">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+
+                    <!-- Servicio 3 -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Lavado de Vapor</h3>
+                        <div class="form-group">
+                            <label for="servicio3_precio">
+                                <i class="fas fa-dollar-sign"></i> Precio
+                            </label>
+                            <input type="number" id="servicio3_precio" placeholder="480" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio3_descripcion">
+                                <i class="fas fa-align-left"></i> Descripción
+                            </label>
+                            <textarea id="servicio3_descripcion" rows="3"
+                                placeholder="Descripción del servicio..."></textarea>
+                        </div>
+                        <button class="btn-save" onclick="guardarServicio(3)">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+
+                    <!-- Servicio 4 -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Limpieza de Motor</h3>
+                        <div class="form-group">
+                            <label for="servicio4_precio">
+                                <i class="fas fa-dollar-sign"></i> Precio
+                            </label>
+                            <input type="number" id="servicio4_precio" placeholder="850" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="servicio4_descripcion">
+                                <i class="fas fa-align-left"></i> Descripción
+                            </label>
+                            <textarea id="servicio4_descripcion" rows="3"
+                                placeholder="Descripción del servicio..."></textarea>
+                        </div>
+                        <button class="btn-save" onclick="guardarServicio(4)">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Tab Contents -->
-            <div class="tab-content">
-                <!-- Servicios Tab -->
-                <div id="servicios" class="tab-panel active">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-car-wash"></i>Servicios</h2>
-                        <p>Configura los precios y descripciones de tus servicios</p>
-                    </div>
-                    
-                    <div class="services-grid">
-                        <!-- Servicio 1 -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-sparkles"></i>
-                            </div>
-                            <h3>Limpieza Profunda</h3>
-                            <div class="form-group">
-                                <label for="servicio1_precio">
-                                    <i class="fas fa-dollar-sign"></i> Precio
-                                </label>
-                                <input type="number" id="servicio1_precio" placeholder="170" min="0">
-                            </div>
-                            <div class="form-group">
-                                <label for="servicio1_descripcion">
-                                    <i class="fas fa-align-left"></i> Descripción
-                                </label>
-                                <textarea id="servicio1_descripcion" rows="3" placeholder="Descripción del servicio..."></textarea>
-                            </div>
-                            <button class="btn-save" onclick="guardarServicio(1)">
-                                <i class="fas fa-save"></i> Guardar Cambios
-                            </button>
-                        </div>
-
-                        <!-- Servicio 2 -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <h3>Pulido de Faros</h3>
-                            <div class="form-group">
-                                <label for="servicio2_precio">
-                                    <i class="fas fa-dollar-sign"></i> Precio
-                                </label>
-                                <input type="number" id="servicio2_precio" placeholder="500" min="0">
-                            </div>
-                            <div class="form-group">
-                                <label for="servicio2_descripcion">
-                                    <i class="fas fa-align-left"></i> Descripción
-                                </label>
-                                <textarea id="servicio2_descripcion" rows="3" placeholder="Descripción del servicio..."></textarea>
-                            </div>
-                            <button class="btn-save" onclick="guardarServicio(2)">
-                                <i class="fas fa-save"></i> Guardar Cambios
-                            </button>
-                        </div>
-
-                        <!-- Servicio 3 -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-cloud"></i>
-                            </div>
-                            <h3>Lavado de Vapor</h3>
-                            <div class="form-group">
-                                <label for="servicio3_precio">
-                                    <i class="fas fa-dollar-sign"></i> Precio
-                                </label>
-                                <input type="number" id="servicio3_precio" placeholder="480" min="0">
-                            </div>
-                            <div class="form-group">
-                                <label for="servicio3_descripcion">
-                                    <i class="fas fa-align-left"></i> Descripción
-                                </label>
-                                <textarea id="servicio3_descripcion" rows="3" placeholder="Descripción del servicio..."></textarea>
-                            </div>
-                            <button class="btn-save" onclick="guardarServicio(3)">
-                                <i class="fas fa-save"></i> Guardar Cambios
-                            </button>
-                        </div>
-
-                        <!-- Servicio 4 -->
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fas fa-cog"></i>
-                            </div>
-                            <h3>Limpieza de Motor</h3>
-                            <div class="form-group">
-                                <label for="servicio4_precio">
-                                    <i class="fas fa-dollar-sign"></i> Precio
-                                </label>
-                                <input type="number" id="servicio4_precio" placeholder="850" min="0">
-                            </div>
-                            <div class="form-group">
-                                <label for="servicio4_descripcion">
-                                    <i class="fas fa-align-left"></i> Descripción
-                                </label>
-                                <textarea id="servicio4_descripcion" rows="3" placeholder="Descripción del servicio..."></textarea>
-                            </div>
-                            <button class="btn-save" onclick="guardarServicio(4)">
-                                <i class="fas fa-save"></i> Guardar Cambios
-                            </button>
-                        </div>
-                    </div>
+            <!-- Contacto Tab -->
+            <div id="contacto" class="tab-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-address-book"></i> Información de Contacto</h2>
+                    <p>Mantén actualizada tu información de contacto</p>
                 </div>
 
-                <!-- Contacto Tab -->
-                <div id="contacto" class="tab-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-address-book"></i> Información de Contacto</h2>
-                        <p>Mantén actualizada tu información de contacto</p>
-                    </div>
-                    
-                    <div class="contact-grid">
-                        <div class="contact-card">
-                            <h3><i class="fas fa-phone"></i> Teléfono Principal</h3>
-                            <div class="form-group">
-                                <input type="tel" id="telefono1" placeholder="(712) 158-6559">
-                                <button class="btn-save" onclick="guardarCambio('telefono1', 'numero')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="contact-card">
-                            <h3><i class="fas fa-mobile-alt"></i> Teléfono Secundario</h3>
-                            <div class="form-group">
-                                <input type="tel" id="telefono2" placeholder="(712) 165-6340">
-                                <button class="btn-save" onclick="guardarCambio('telefono2', 'numero')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="contact-card">
-                            <h3><i class="fas fa-envelope"></i> Email</h3>
-                            <div class="form-group">
-                                <input type="email" id="email_contacto" placeholder="ositoscari@gmail.com">
-                                <button class="btn-save" onclick="guardarCambio('email_contacto', 'texto')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="contact-card">
-                            <h3><i class="fas fa-clock"></i> Horario de Atención</h3>
-                            <div class="form-group">
-                                <input type="text" id="horario_atencion" placeholder="Lunes a Domingo: 8:00 AM - 6:00 PM">
-                                <button class="btn-save" onclick="guardarCambio('horario_atencion', 'texto')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3><i class="fas fa-phone"></i> Teléfono Principal</h3>
+                        <div class="form-group">
+                            <input type="tel" id="telefono1" placeholder="(712) 158-6559">
+                            <button class="btn-save" onclick="guardarCambio('telefono1', 'numero')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Ubicación Tab -->
-                <div id="ubicacion" class="tab-panel">
-                    <div class="panel-header">
-                        <h2><i class="fas fa-map-marked-alt"></i> Información de Ubicación</h2>
-                        <p>Configura los detalles de ubicación de tu negocio</p>
+                    <div class="contact-card">
+                        <h3><i class="fas fa-mobile-alt"></i> Teléfono Secundario</h3>
+                        <div class="form-group">
+                            <input type="tel" id="telefono2" placeholder="(712) 165-6340">
+                            <button class="btn-save" onclick="guardarCambio('telefono2', 'numero')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
+                        </div>
                     </div>
-                    
-                    <div class="location-grid">
-                        <div class="location-card">
-                            <h3><i class="fas fa-map-marker-alt"></i> Dirección Completa</h3>
-                            <div class="form-group">
-                                <textarea id="direccion_completa" rows="3" placeholder="La Palma Manzana 030, Centro, 50640 San Felipe del Progreso, Estado de México"></textarea>
-                                <button class="btn-save" onclick="guardarCambio('direccion_completa', 'texto')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
-                        </div>
 
-                        <div class="location-card">
-                            <h3><i class="fas fa-building"></i> Nombre del Lugar</h3>
-                            <div class="form-group">
-                                <input type="text" id="nombre_ubicacion" placeholder='Ubicación "La Palma"'>
-                                <button class="btn-save" onclick="guardarCambio('nombre_ubicacion', 'texto')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
+                    <div class="contact-card">
+                        <h3><i class="fas fa-envelope"></i> Email</h3>
+                        <div class="form-group">
+                            <input type="email" id="email_contacto" placeholder="ositoscari@gmail.com">
+                            <button class="btn-save" onclick="guardarCambio('email_contacto', 'texto')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
                         </div>
+                    </div>
 
-                        <div class="location-card">
-                            <h3><i class="fab fa-google"></i> Google Maps</h3>
-                            <div class="form-group">
-                                <input type="url" id="url_google_maps" placeholder="https://www.google.com/maps/...">
-                                <button class="btn-save" onclick="guardarCambio('url_google_maps', 'texto')">
-                                    <i class="fas fa-save"></i> Guardar
-                                </button>
-                            </div>
+                    <div class="contact-card">
+                        <h3><i class="fas fa-clock"></i> Horario de Atención</h3>
+                        <div class="form-group">
+                            <input type="text" id="horario_atencion" placeholder="Lunes a Domingo: 8:00 AM - 6:00 PM">
+                            <button class="btn-save" onclick="guardarCambio('horario_atencion', 'texto')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+
+            <!-- Ubicación Tab -->
+            <div id="ubicacion" class="tab-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-map-marked-alt"></i> Información de Ubicación</h2>
+                    <p>Configura los detalles de ubicación de tu negocio</p>
+                </div>
+
+                <div class="location-grid">
+                    <div class="location-card">
+                        <h3><i class="fas fa-map-marker-alt"></i> Dirección Completa</h3>
+                        <div class="form-group">
+                            <textarea id="direccion_completa" rows="3"
+                                placeholder="La Palma Manzana 030, Centro, 50640 San Felipe del Progreso, Estado de México"></textarea>
+                            <button class="btn-save" onclick="guardarCambio('direccion_completa', 'texto')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <h3><i class="fas fa-building"></i> Nombre del Lugar</h3>
+                        <div class="form-group">
+                            <input type="text" id="nombre_ubicacion" placeholder='Ubicación "La Palma"'>
+                            <button class="btn-save" onclick="guardarCambio('nombre_ubicacion', 'texto')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <h3><i class="fab fa-google"></i> Google Maps</h3>
+                        <div class="form-group">
+                            <input type="url" id="url_google_maps" placeholder="https://www.google.com/maps/...">
+                            <button class="btn-save" onclick="guardarCambio('url_google_maps', 'texto')">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     </div>
-            
-		<!-- Scripts -->
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				// Script para toggle del menú
-				document.querySelector('a[href="#menu"]').addEventListener('click', function(e) {
-					e.preventDefault();
-					document.getElementById('menu').classList.toggle('active');
-				});
-				
-				// Script para cerrar el menú
-				document.querySelector('#menu .close').addEventListener('click', function(e) {
-					e.preventDefault();
-					document.getElementById('menu').classList.remove('active');
-				});
 
-				document.addEventListener('DOMContentLoaded', function() {
-					
-    // Script para toggle del menú
-    const menuToggle = document.querySelector('a[href="#menu"]');
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('menu').classList.toggle('active');
+    <!-- Scripts -->
+    <script>
+          const token = localStorage.getItem('token');
+            if (!token) {
+                // Si no hay token, redirigir al login
+                window.location.href = 'index.html';
+            }
+        document.addEventListener('DOMContentLoaded', function () {
+            // Script para toggle del menú
+            document.querySelector('a[href="#menu"]').addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('menu').classList.toggle('active');
+            });
+
+            // Script para cerrar el menú
+            document.querySelector('#menu .close').addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('menu').classList.remove('active');
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+
+                // Script para toggle del menú
+                const menuToggle = document.querySelector('a[href="#menu"]');
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        document.getElementById('menu').classList.toggle('active');
+                    });
+                }
+
+                // Script para cerrar el menú
+                const closeMenu = document.querySelector('#menu .close');
+                if (closeMenu) {
+                    closeMenu.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        document.getElementById('menu').classList.remove('active');
+                    });
+                }
+            });
+            // AGREGAR ESTE CÓDIGO DENTRO DE TU SCRIPT EXISTENTE
+            // (después de tu código del menú, antes del cierre del script)
+
+            // FUNCIONALIDAD DE PESTAÑAS - SOLO ESTO FALTABA
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const targetTab = this.getAttribute('data-tab');
+
+                    // Remover clase active de todos los botones y paneles
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+
+                    // Agregar clase active al botón clickeado y su panel correspondiente
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Funciones básicas para los botones (opcional)
+            function guardarServicio(numero) {
+                alert('Servicio ' + numero + ' guardado');
+            }
+
+            function guardarCambio(elementId, tipo) {
+                alert('Cambio guardado: ' + elementId);
+            }
+
         });
-    }
-    
-    // Script para cerrar el menú
-    const closeMenu = document.querySelector('#menu .close');
-    if (closeMenu) {
-        closeMenu.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('menu').classList.remove('active');
-        });
-    }
-});
-// AGREGAR ESTE CÓDIGO DENTRO DE TU SCRIPT EXISTENTE
-// (después de tu código del menú, antes del cierre del script)
 
-// FUNCIONALIDAD DE PESTAÑAS - SOLO ESTO FALTABA
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabPanels = document.querySelectorAll('.tab-panel');
-
-tabButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const targetTab = this.getAttribute('data-tab');
-        
-        // Remover clase active de todos los botones y paneles
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabPanels.forEach(panel => panel.classList.remove('active'));
-        
-        // Agregar clase active al botón clickeado y su panel correspondiente
-        this.classList.add('active');
-        document.getElementById(targetTab).classList.add('active');
-    });
+document.querySelector('.logout').addEventListener('click', function (e) {
+    e.preventDefault();              // Evita la navegación por defecto
+    localStorage.removeItem('token');  // Borra el token JWT
+    console.log('Sesión cerrada');  // Mensaje de consola
+    alert('Sesión cerrada correctamente'); // Mensaje de alerta
+    location.reload();               // Recarga la página actual
 });
 
-// Funciones básicas para los botones (opcional)
-function guardarServicio(numero) {
-    alert('Servicio ' + numero + ' guardado');
-}
 
-function guardarCambio(elementId, tipo) {
-    alert('Cambio guardado: ' + elementId);
-}
 
-						});
-				
-		</script>
+    </script>
 
-	</body>
+</body>
+
 </html>

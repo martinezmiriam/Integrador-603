@@ -138,6 +138,7 @@
       }
     </style>
   </head>
+  <script src="config.js"></script>
  <body>
   <video autoplay loop muted playsinline class="video-background">
     <source src="../img/Fondo_inicioS.mp4" type="video/mp4" />
@@ -191,6 +192,7 @@
       .getElementById("registroForm")
       .addEventListener("submit", function (e) {
         e.preventDefault();
+        console.log(API_URL)
 
         // Log para ver cuando se envía el formulario
         console.log("Formulario enviado");
@@ -201,7 +203,7 @@
         // Log para ver los datos que se están enviando al backend
         console.log("Datos del formulario:", data);
 
-        fetch("http://localhost:3000/api/usuarios/register", {
+        fetch(`${API_URL}/usuarios/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),

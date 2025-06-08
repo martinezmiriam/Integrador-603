@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Servicios de Autolavado O.C</title>
+    <title>Productos Extras - Autolavado O.C</title>
     <link rel="stylesheet" href="css/carrito.css" />
-    <!-- Font Awesome para el ícono del carrito -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
-  <body>
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
     <header id="header">
       <div class="header-content">
         <div class="logo-container">
-          <img
-            src="img/LogoOficial.png"
-            alt="Logo Oficial"
-            class="header-logo"
-          />
+          <img src="img/LogoOficial.png" alt="Logo Oficial" class="header-logo" />
           <h1><a href="index.html">Estacionamiento y Autolavado O.C</a></h1>
         </div>
         <nav>
@@ -36,19 +29,16 @@
           <li><a href="cliente.html">Inicio</a></li>
           <li><a href="perfil.html">Mi perfil</a></li>
           <li><a href="Promociones.html">Autolavado</a></li>
-          <li><a href="CarritoCliente.html">Produtos Extras</a></li>
+          <li><a href="CarritoCliente.html">Productos Extras</a></li>
           <li><a href="estacionamiento.html">Estacionamiento</a></li>
           <li><a href="index.html" class="logout">Cerrar Sesión</a></li>
         </ul>
         <a href="#" class="close">&times;</a>
       </div>
     </nav>
+
     <div class="banner-container">
-      <img
-        src="img/carrito/Logo.png"
-        alt="Servicios de Autolavado"
-        class="banner-image"
-      />
+      <img src="img/carrito/Logo.png" alt="Servicios de Autolavado" class="banner-image" />
       <div class="banner-text">
         <div class="title-container">
           <h2>Servicios de Autolavado O.C</h2>
@@ -57,7 +47,7 @@
             <span class="cart-count" id="cart-count">0</span>
           </div>
         </div>
-        <p>Bienvenido al Catalogo, que sea el dia de hoy querido Cliente</p>
+        <p>Bienvenido al Catálogo, que sea un buen día querido Cliente</p>
       </div>
     </div>
 
@@ -83,449 +73,14 @@
     </div>
 
     <main class="menu-container">
-      <!-- Primera fila de servicios -->
-      <div
-        class="pizza-card"
-        data-id="1"
-        data-name="Tapetes"
-        data-price="50"
-        data-img="img/carrito/Tapete.PNG"
-      >
-        <img src="img/carrito/Tapete.PNG" alt="Tapetes" />
-        <h3>Tapetes</h3>
-        <p>
-          Reemplazo de los tapetes desgastados por unos nuevos que protegen el
-          piso del vehículo.
-        </p>
-        <p class="price">$50</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="2"
-        data-name="Aromatizantes"
-        data-price="45"
-        data-img="img/carrito/Aromatizante.png"
-      >
-        <img src="img/carrito/Aromatizante.png" alt="Aromatizantes" />
-        <h3>Aromatizantes</h3>
-        <p>
-          Aplicación de fragancias para mantener un olor agradable en el
-          interior del vehículo.
-        </p>
-        <p class="price">$45</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="3"
-        data-name="Limpieza Profunda"
-        data-price="480"
-        data-img="img/carrito/limpiezapro2.jpg"
-      >
-        <img src="img/carrito/limpiezapro2.jpg" alt="Limpieza Profunda" />
-        <h3>Limpieza Profunda</h3>
-        <p>
-          Servicio detallado que incluye aspirado intensivo, limpieza de
-          superficies interiores y eliminación de manchas difíciles.
-        </p>
-        <p class="price">$480</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <!-- Segunda fila de servicios -->
-      <div
-        class="pizza-card"
-        data-id="4"
-        data-name="Retiro de Pelo de Perro"
-        data-price="500"
-        data-img="img/carrito/LimpiezaPerro_04.PNG"
-      >
-        <img
-          src="img/carrito/LimpiezaPerro_04.PNG"
-          alt="Retiro de Pelo de Perro"
-        />
-        <h3>Retiro de Pelo de Perro</h3>
-        <p>
-          Eliminación especializada de pelos de mascota de asientos, tapicería y
-          alfombras.
-        </p>
-        <p class="price">$500</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="5"
-        data-name="Corrección de pintura"
-        data-price="250"
-        data-img="img/carrito/Pintura.png"
-      >
-        <img src="img/carrito/Pintura.png" alt="Corrección de pintura" />
-        <h3>Corrección de pintura</h3>
-        <p>
-          Reparación de rasguños, rayones y desperfectos menores en la pintura
-          del vehículo.
-        </p>
-        <p class="price">$250</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="6"
-        data-name="Limpieza de Techo Interior"
-        data-price="300"
-        data-img="img/carrito/Techo.png"
-      >
-        <img src="img/carrito/Techo.png" alt="Limpieza de Techo Interior" />
-        <h3>Limpieza de Techo Interior</h3>
-        <p>Lavado y tratamiento del techo interior (tapizado) del vehículo.</p>
-        <p class="price">$300</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <!-- Tercera fila -->
-      <div
-        class="pizza-card"
-        data-id="7"
-        data-name="Limpieza de Motor"
-        data-price="380"
-        data-img="img/carrito/LimpiezaMotor2.png"
-      >
-        <img src="img/carrito/LimpiezaMotor2.png" alt="Limpieza de Motor" />
-        <h3>Limpieza de Motor</h3>
-        <p>Servicio de lavado y desengrasar del compartimiento del motor.</p>
-        <p class="price">$380</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="8"
-        data-name="Pulido de Faros"
-        data-price="150"
-        data-img="img/carrito/pulido2.jpeg"
-      >
-        <img src="img/carrito/pulido2.jpeg" alt="Pulido de Faros" />
-        <h3>Pulido de Faros</h3>
-        <p>
-          Restauración de faros amarillentos u opacos para mejorar visibilidad y
-          apariencia.
-        </p>
-        <p class="price">$150</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="9"
-        data-name="Limpieza de Carrocería"
-        data-price="450"
-        data-img="img/carrito/Carroceria.png"
-      >
-        <img src="img/carrito/Carroceria.png" alt="Limpieza de Carrocería" />
-        <h3>Limpieza de Carrocería</h3>
-        <p>
-          Lavado exterior completo con atención a detalles como llantas y rines.
-        </p>
-        <p class="price">$450</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <!-- Cuarta fila -->
-      <div
-        class="pizza-card"
-        data-id="10"
-        data-name="Encelado"
-        data-price="270"
-        data-img="img/carrito/Encelado.PNG"
-      >
-        <img src="img/carrito/Encelado.PNG" alt="Encelado" />
-        <h3>Encelado</h3>
-        <p>
-          Aplicación de cera protectora que brinda brillo y protección a la
-          pintura.
-        </p>
-        <p class="price">$270</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="11"
-        data-name="Sanitización de Autos"
-        data-price="190"
-        data-img="img/carrito/Sanitización.png"
-      >
-        <img src="img/carrito/Sanitización.png" alt="Sanitización de Autos" />
-        <h3>Sanitización de Autos</h3>
-        <p>
-          Eliminación de gérmenes, bacterias y virus del interior mediante
-          productos especializados.
-        </p>
-        <p class="price">$190</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
-
-      <div
-        class="pizza-card"
-        data-id="12"
-        data-name="Lavado de Vapor"
-        data-price="290"
-        data-img="img/carrito/LimpiezaVapor2.png"
-      >
-        <img src="img/carrito/LimpiezaVapor2.png" alt="Lavado de Vapor" />
-        <h3>Lavado de Vapor</h3>
-        <p>
-          Limpieza con vapor a alta temperatura que desinfecta y elimina
-          suciedad sin químicos agresivos.
-        </p>
-        <p class="price">$290</p>
-        <button class="add-to-cart">Agregar al carrito</button>
-      </div>
+      <!-- Servicios se cargarán dinámicamente desde la API -->
+      <div id="services-container" class="services-grid"></div>
     </main>
 
     <footer>
       <p>Todos los derechos Reservados a O.C</p>
     </footer>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Menú de navegación
-        const menuToggle = document.querySelector(".menu-toggle");
-        const closeButton = document.querySelector("#menu .close");
-        const menu = document.querySelector("#menu");
-
-        menuToggle.addEventListener("click", function (e) {
-          e.preventDefault();
-          menu.classList.add("active");
-        });
-
-        closeButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          menu.classList.remove("active");
-        });
-        // Carrito de compras con límite de 5 productos
-        const cartToggle = document.getElementById("cart-toggle");
-        const cartPanel = document.getElementById("cart-panel");
-        const closeCart = document.querySelector(".close-cart");
-        const cartItems = document.getElementById("cart-items");
-        const cartTotal = document.getElementById("cart-total");
-        const cartCount = document.getElementById("cart-count");
-        const emptyCartBtn = document.getElementById("empty-cart");
-        const addToCartButtons = document.querySelectorAll(".add-to-cart");
-
-        // Array para almacenar los items del carrito
-        let cart = [];
-
-        // Límite máximo por producto individual
-        const MAX_QUANTITY_PER_PRODUCT = 5;
-
-        // Función para abrir el carrito
-        cartToggle.addEventListener("click", function () {
-          cartPanel.classList.toggle("active");
-        });
-
-        // Función para cerrar el carrito
-        closeCart.addEventListener("click", function () {
-          cartPanel.classList.remove("active");
-        });
-
-        // Función para agregar items al carrito
-        addToCartButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const card = this.closest(".pizza-card");
-            const id = card.dataset.id;
-            const name = card.dataset.name;
-            const price = parseFloat(card.dataset.price);
-            const img = card.dataset.img;
-
-            // Revisar si el item ya está en el carrito
-            const existingItem = cart.find((item) => item.id === id);
-
-            if (existingItem) {
-              // Si el item ya existe, verificar el límite individual del producto
-              if (existingItem.quantity >= MAX_QUANTITY_PER_PRODUCT) {
-                showNotification(
-                  `Límite alcanzado: máximo ${MAX_QUANTITY_PER_PRODUCT} unidades de ${name}`,
-                  "error"
-                );
-                return;
-              }
-              existingItem.quantity++;
-            } else {
-              // Si es un nuevo item, agregarlo con cantidad 1
-              cart.push({
-                id: id,
-                name: name,
-                price: price,
-                img: img,
-                quantity: 1,
-              });
-            }
-
-            // Actualizar carrito
-            updateCart();
-
-            // Mostrar notificación de éxito
-            showNotification(`${name} agregado`, "success");
-
-            // Mostrar el carrito
-            cartPanel.classList.add("active");
-          });
-        });
-
-        // Función para actualizar el carrito
-        function updateCart() {
-          // Limpiar el carrito
-          cartItems.innerHTML = "";
-
-          // Si no hay items, mostrar mensaje
-          if (cart.length === 0) {
-            cartItems.innerHTML =
-              '<p class="empty-cart-message">Tu carrito está vacío</p>';
-          }
-
-          // Calcular el total
-          let total = 0;
-          let count = 0;
-
-          // Agregar cada item al carrito
-          cart.forEach((item) => {
-            const itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            count += item.quantity;
-
-            const cartItem = document.createElement("div");
-            cartItem.classList.add("cart-item");
-            cartItem.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.img}" alt="${item.name}">
-            </div>
-            <div class="cart-item-details">
-                <h4>${item.name}</h4>
-                <p>${item.price}</p>
-                <div class="cart-item-quantity">
-                    <button class="quantity-btn minus" data-id="${item.id}">-</button>
-                    <span>${item.quantity}</span>
-                    <button class="quantity-btn plus" data-id="${item.id}">+</button>
-                </div>
-                <small class="quantity-limit">Máx: ${MAX_QUANTITY_PER_PRODUCT}</small>
-            </div>
-            <button class="remove-item" data-id="${item.id}">×</button>
-        `;
-
-            cartItems.appendChild(cartItem);
-          });
-
-          // Actualizar el total
-          cartTotal.textContent = `$${total.toFixed(0)}`;
-          cartCount.textContent = count;
-
-          // Guardar el carrito en memoria (sin localStorage)
-          // localStorage.setItem('cart', JSON.stringify(cart));
-
-          // Agregar eventos para los botones de cantidad
-          document.querySelectorAll(".quantity-btn").forEach((btn) => {
-            btn.addEventListener("click", function () {
-              const id = this.dataset.id;
-              const itemIndex = cart.findIndex((item) => item.id === id);
-
-              if (itemIndex !== -1) {
-                if (this.classList.contains("plus")) {
-                  // Verificar límite individual del producto antes de aumentar
-                  if (cart[itemIndex].quantity >= MAX_QUANTITY_PER_PRODUCT) {
-                    showNotification(
-                      `Límite alcanzado: máximo ${MAX_QUANTITY_PER_PRODUCT} unidades de ${cart[itemIndex].name}`,
-                      "error"
-                    );
-                    return;
-                  }
-                  cart[itemIndex].quantity++;
-                } else if (this.classList.contains("minus")) {
-                  cart[itemIndex].quantity--;
-
-                  // Si la cantidad es 0, eliminar el item
-                  if (cart[itemIndex].quantity === 0) {
-                    cart.splice(itemIndex, 1);
-                  }
-                }
-
-                updateCart();
-              }
-            });
-          });
-
-          // Agregar eventos para el botón de eliminar
-          document.querySelectorAll(".remove-item").forEach((btn) => {
-            btn.addEventListener("click", function () {
-              const id = this.dataset.id;
-              const itemIndex = cart.findIndex((item) => item.id === id);
-
-              if (itemIndex !== -1) {
-                cart.splice(itemIndex, 1);
-                updateCart();
-                showNotification("Producto eliminado del carrito", "info");
-              }
-            });
-          });
-        }
-
-        // Función para mostrar notificación mejorada
-        function showNotification(message, type = "success") {
-          const notification = document.createElement("div");
-          notification.classList.add("notification", type);
-          notification.textContent = message;
-
-          // Estilos básicos para diferentes tipos de notificación
-          const styles = {
-            success: "background-color: #4CAF50; color: white;",
-            error: "background-color: #f44336; color: white;",
-            info: "background-color: #2196F3; color: white;",
-          };
-
-          notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 15px 20px;
-        border-radius: 5px;
-        z-index: 1000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        ${styles[type] || styles.success}
-    `;
-
-          document.body.appendChild(notification);
-
-          // Mostrar notificación
-          setTimeout(() => {
-            notification.style.transform = "translateX(0)";
-          }, 100);
-
-          // Ocultar notificación después de 3 segundos
-          setTimeout(() => {
-            notification.style.transform = "translateX(100%)";
-            setTimeout(() => {
-              if (document.body.contains(notification)) {
-                document.body.removeChild(notification);
-              }
-            }, 300);
-          }, 3000);
-        }
-
-        // Vaciar el carrito
-        emptyCartBtn.addEventListener("click", function () {
-          cart = [];
-          updateCart();
-          showNotification("Carrito vaciado", "info");
-        });
-
-        // Confirmar compra
-      });
-    </script>
-  </body>
+    <script src="js/carritoCliente.js"></script>
+</body>
 </html>

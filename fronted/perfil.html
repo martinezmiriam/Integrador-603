@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <header id="header">
         <div class="header-content">
@@ -27,18 +29,18 @@
         <div class="inner">
             <h2>Menu</h2>
             <ul class="links">
-               <li><a href="cliente.html">Inicio</a></li>
-						<li><a href="perfil.html">Mi perfil</a></li>
-				<li><a href="Promociones.html">Autolavado</a></li>
-						<li><a href="CarritoCliente.html">Productos Extras</a></li>
-						<li><a href="estacionamiento.html">Estacionamiento</a></li>
-						<li><a href="index.html" class="logout">Cerrar Sesión</a></li>
+                <li><a href="cliente.html">Inicio</a></li>
+                <li><a href="perfil.html">Mi perfil</a></li>
+                <li><a href="Promociones.html">Autolavado</a></li>
+                <li><a href="CarritoCliente.html">Productos Extras</a></li>
+                <li><a href="estacionamiento.html">Estacionamiento</a></li>
+                <li><a href="index.html" class="logout">Cerrar Sesión</a></li>
             </ul>
             <a href="#" class="close">&times;</a>
         </div>
     </nav>
 
-    
+
 
     <!-- Contenido del Perfil -->
     <main class="profile-container">
@@ -67,12 +69,8 @@
                             <label for="firstName">Nombre</label>
                             <input type="text" id="firstName" required>
                         </div>
-                        <div class="form-group">
-                            <label for="lastName">Apellido</label>
-                            <input type="text" id="lastName" required>
-                        </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email">Correo Electrónico</label>
@@ -154,94 +152,277 @@
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menú de navegación
+        function parseJwt(token) {
+            try {
+                return JSON.parse(atob(token.split('.')[1]));
+            } catch (e) {
+                return null;
+            }
+        }
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.log('No hay token, redirigir a login');
+            window.location.href = 'index.html';
+        }
+
+        const decoded = parseJwt(token);
+        const userId = decoded?.id;
+        if (!userId) {
+            console.log('Token inválido o no tiene id');
+            // window.location.href = 'index.html';
+        }
+        console.log('UserId obtenido del token:', userId);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadUserData();
+            cargarHistorial();
+            cargarReservas();  // Aquí la llamada nueva
+
+
+
             const menuToggle = document.querySelector('.menu-toggle');
             const closeButton = document.querySelector('#menu .close');
             const menu = document.querySelector('#menu');
-            
-            // Abrir y cerrar el menú
-            menuToggle.addEventListener('click', function(e) {
+
+            menuToggle.addEventListener('click', e => {
                 e.preventDefault();
                 menu.classList.add('active');
             });
-            // Cerrar el menú al hacer clic en el botón de cerrar
-            closeButton.addEventListener('click', function(e) {
+
+            closeButton.addEventListener('click', e => {
                 e.preventDefault();
                 menu.classList.remove('active');
             });
 
-            // Tabs del perfil
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
-            // Inicializar el primer tab como activo
+
             tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const targetTab = this.getAttribute('data-tab');
-                    
-                    // Remover clase active de todos los botones y contenidos
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Agregar clase active al botón clickeado y su contenido correspondiente
                     this.classList.add('active');
                     document.getElementById(targetTab).classList.add('active');
                 });
             });
 
-            // Botón guardar cambios
             const saveButton = document.querySelector('.btn-save');
-            saveButton.addEventListener('click', function() {
-                // Simular guardado
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
-                this.disabled = true;
-                // Aquí puedes agregar la lógica para guardar los cambios en la BD
-                // Por ejemplo, enviar los datos del formulario a un servidor
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-check"></i> Guardado';
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
-                        this.disabled = false;
-                    }, 1500);
-                }, 2000);
-            });
-            
-
-            // Aquí puedes agregar funciones para cargar datos desde la BD
-            // loadUserData();
-            // loadServiceHistory();
-            // loadParkingHistory();
-            // loadPromotionsHistory();
-            // loadUserStats();
+            saveButton.addEventListener('click', saveUserChanges);
         });
 
-        // Funciones para cargar datos desde la base de datos (para implementar)
-        /*
-        function loadUserData() {
-            // Cargar información del usuario desde la BD
-            // Llenar campos: userName, firstName, lastName, email, phone, member-since
+        async function loadUserData() {
+            try {
+                const res = await fetch(`http://localhost:3000/api/usuarios/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!res.ok) throw new Error('No se pudo obtener datos del usuario');
+                const user = await res.json();
+
+                // Mostrar nombre completo (solo nombre)
+                document.getElementById('userName').textContent = user.nombre || '';
+
+                // Llenar input
+                document.getElementById('firstName').value = user.nombre || '';
+
+                document.getElementById('email').value = user.correo || '';
+                document.getElementById('phone').value = user.telefono || '';
+
+            } catch (error) {
+                console.error(error);
+                alert('Error al cargar datos del usuario');
+            }
         }
 
-        function loadServiceHistory() {
-            // Cargar historial de servicios desde la BD
-            // Llenar contenedor: servicesHistory
+        async function saveUserChanges() {
+            const saveButton = document.querySelector('.btn-save');
+            saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+            saveButton.disabled = true;
+
+            const updatedUser = {
+                nombre: document.getElementById('firstName').value.trim(),
+                correo: document.getElementById('email').value.trim(),
+                telefono: document.getElementById('phone').value.trim()
+            };
+
+            try {
+                const res = await fetch(`http://localhost:3000/api/usuarios/${userId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(updatedUser)
+                });
+                if (!res.ok) throw new Error('Error al guardar los cambios');
+
+                const data = await res.json();
+
+                // Actualiza el nombre mostrado
+                document.getElementById('userName').textContent = data.nombre || '';
+
+                saveButton.innerHTML = '<i class="fas fa-check"></i> Guardado';
+                setTimeout(() => {
+                    saveButton.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+                    saveButton.disabled = false;
+                }, 1500);
+
+            } catch (error) {
+                console.error(error);
+                alert('No se pudieron guardar los cambios');
+                saveButton.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+                saveButton.disabled = false;
+            }
         }
 
-        function loadParkingHistory() {
-            // Cargar historial de estacionamiento desde la BD
-            // Llenar contenedor: parkingHistory
+
+        async function saveUserChanges() {
+            const saveButton = document.querySelector('.btn-save');
+
+            const updatedUser = {
+                nombre: document.getElementById('firstName').value.trim(),
+                correo: document.getElementById('email').value.trim(),
+                telefono: document.getElementById('phone').value.trim()
+            };
+
+            console.log('Intentando guardar cambios con datos:', updatedUser);
+
+            saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Guardando...';
+            saveButton.disabled = true;
+
+            try {
+                const res = await fetch(`http://localhost:3000/api/usuarios/${userId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(updatedUser)
+                });
+
+                console.log('Respuesta del servidor:', res);
+
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    console.error('Error en la respuesta del servidor:', errorText);
+                    throw new Error('Error al guardar los cambios');
+                }
+
+                const data = await res.json();
+                console.log('Datos recibidos después de guardar:', data);
+
+                document.getElementById('userName').textContent = (data.nombre || '') + ' ' + (data.apellido || '');
+
+                saveButton.innerHTML = '<i class="fas fa-check"></i> Guardado';
+                setTimeout(() => {
+                    saveButton.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+                    saveButton.disabled = false;
+                }, 1500);
+
+            } catch (error) {
+                console.error('Catch error:', error);
+                alert('No se pudieron guardar los cambios');
+                saveButton.innerHTML = '<i class="fas fa-save"></i> Guardar Cambios';
+                saveButton.disabled = false;
+            }
         }
 
-        function loadPromotionsHistory() {
-            // Cargar historial de promociones desde la BD
-            // Llenar contenedor: promotionsHistory
+
+        async function cargarHistorial() {
+            try {
+                const res = await fetch(`http://localhost:3000/api/compras/historial/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (!res.ok) throw new Error('No se pudo cargar el historial');
+                const data = await res.json();
+
+                const servicesHistory = document.getElementById('servicesHistory');
+                const promotionsHistory = document.getElementById('promotionsHistory');
+
+                servicesHistory.innerHTML = '';
+                promotionsHistory.innerHTML = '';
+
+                if (data.compras.length === 0) {
+                    servicesHistory.innerHTML = '<p class="no-data">No hay servicios registrados</p>';
+                    promotionsHistory.innerHTML = '<p class="no-data">No hay promociones utilizadas</p>';
+                    return;
+                }
+
+                data.compras.forEach(compra => {
+                    // Servicios
+                    if (compra.servicios.length > 0) {
+                        compra.servicios.forEach(servicio => {
+                            const div = document.createElement('div');
+                            div.classList.add('history-item');
+                            div.textContent = `${servicio.servicio_nombre} - Cantidad: ${servicio.cantidad} - Precio unitario: $${servicio.precio_unitario}`;
+                            servicesHistory.appendChild(div);
+                        });
+                    } else {
+                        servicesHistory.innerHTML = '<p class="no-data">No hay servicios registrados</p>';
+                    }
+
+                    // Promociones
+                    if (compra.promocion) {
+                        const div = document.createElement('div');
+                        div.classList.add('history-item');
+                        div.textContent = `${compra.promocion.nombre} - ${compra.promocion.descripcion}`;
+                        promotionsHistory.appendChild(div);
+                    }
+                });
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('servicesHistory').innerHTML = '<p class="no-data">Error al cargar servicios</p>';
+                document.getElementById('promotionsHistory').innerHTML = '<p class="no-data">Error al cargar promociones</p>';
+            }
         }
 
-        function loadUserStats() {
-            // Cargar estadísticas del usuario desde la BD
-            // Llenar: totalServices, totalSpent, loyaltyPoints, activeReservations
+
+
+        async function cargarReservas() {
+            try {
+                const res = await fetch(`http://localhost:3000/api/reservas/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!res.ok) throw new Error('No se pudo cargar las reservas');
+
+                const data = await res.json();
+
+                const parkingHistory = document.getElementById('parkingHistory');
+                parkingHistory.innerHTML = '';
+
+                if (!data.reservas || data.reservas.length === 0) {
+                    parkingHistory.innerHTML = '<p class="no-data">No hay reservas registradas</p>';
+                    return;
+                }
+
+                data.reservas.forEach(reserva => {
+                    const div = document.createElement('div');
+                    div.classList.add('history-item');
+
+                    // Ajusta según los campos que tengas en la reserva
+                    div.textContent = `Fecha: ${new Date(reserva.fecha_solicitada).toLocaleDateString()} - Estado: ${reserva.estado || 'Desconocido'}`;
+
+                    parkingHistory.appendChild(div);
+                });
+            } catch (error) {
+                console.error(error);
+                const parkingHistory = document.getElementById('parkingHistory');
+                parkingHistory.innerHTML = '<p class="no-data">Error al cargar reservas</p>';
+            }
         }
-        */
+
     </script>
+
+
 </body>
+
 </html>

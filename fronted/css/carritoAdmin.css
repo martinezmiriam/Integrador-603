@@ -945,3 +945,11 @@ footer p {
         padding: 10px;
     }
 }
+.preview-image {
+    max-width: 100px;
+    display: block;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}

@@ -1,29 +1,27 @@
-//raiz db.js
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 
-// Crear conexión
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'localhost',
-  user: 'root',     // Reemplaza con tu usuario de MySQL
-  password: '',     // Reemplaza con tu contraseña
-  database: 'usuarios_db'
+  user: 'root',
+  password: '',
+  database: 'autolavado_db',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-// Conectar
-connection.connect(err => {
-  if (err) {
-    console.error('Error de conexión:', err);
-    return;
+// Función para probar conexión
+async function testConnection() {
+  try {
+    const connection = await pool.getConnection();
+    console.log('Conexión exitosa a la base de datos');
+    connection.release(); // liberá la conexión al pool
+  } catch (error) {
+    console.error('Error al conectar a la base de datos:', error.message);
   }
-  console.log('Conexión exitosa a la base de datos');
-});
-
-// Función para ejecutar consultas
-function query(sql, params, callback) {
-  return connection.query(sql, params, callback);
 }
 
-module.exports = {
-  connection,
-  query
-};
+// Ejecutamos la prueba al cargar el módulo
+testConnection();
+
+module.exports = pool;

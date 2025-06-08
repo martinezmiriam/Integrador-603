@@ -730,6 +730,32 @@ body {
     transform: translateY(-2px);
 }
 
+.editable-input {
+  width: 90%;
+  padding: 4px;
+  margin: 4px 0;
+  font-size: 1em;
+}
+///// campos editables de autolavado
+.save-btn, .cancel-btn, .edit-btn {
+  cursor: pointer;
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 4px;
+}
+
+.cancel-btn {
+  background-color: #f44336;
+}
+
+.edit-btn {
+  background-color: #2196f3;
+}
+
+
 /* ===== NOTIFICACIONES ===== */
 
 .notification {
@@ -859,3 +885,4 @@ footer p {
         height: 150px;
     }
 }
+

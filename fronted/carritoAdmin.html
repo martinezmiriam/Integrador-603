@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Font Awesome para el ícono del carrito -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <header id="header">
         <div class="header-content">
@@ -27,10 +29,10 @@
             <h2>Menu</h2>
             <ul class="links">
                 <li><a href="admin.html">Inicio</a></li>
-				<li><a href="Promociones.html">Autolavado</a></li>
-				<li><a href="carritoAdmin.html">Servicios</a></li>
-				<li><a href="Reservas.html">Reserva</a></li>
-				<li><a href="ayuda.html">Guia de ayuda</a></li>
+                <li><a href="Admin_Promo.html">Autolavado</a></li>
+                <li><a href="carritoAdmin.html">Servicios</a></li>
+                <li><a href="Reservas.html">Reserva</a></li>
+                <li><a href="ayuda.html">Guia de ayuda</a></li>
             </ul>
             <a href="#" class="close">&times;</a>
         </div>
@@ -67,7 +69,7 @@
                 </div>
                 <form id="service-form">
                     <input type="hidden" id="service-id">
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="service-name">Nombre del Servicio</label>
@@ -85,8 +87,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="service-image">URL de la Imagen</label>
-                        <input type="text" id="service-image" required>
+                        <label for="service-image">Imagen del Servicio</label>
+                        <input type="file" id="service-image" accept="image/*">
                     </div>
 
                     <div class="form-actions">
@@ -154,360 +156,6 @@
         <p>Todos los derechos Reservados a O.C</p>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menú de navegación
-            const menuToggle = document.querySelector('.menu-toggle');
-            const closeButton = document.querySelector('#menu .close');
-            const menu = document.querySelector('#menu');
-
-            menuToggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                menu.classList.add('active');
-            });
-
-            closeButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                menu.classList.remove('active');
-            });
-
-            // Variables del sistema
-            let services = [
-                {id: 1, name: "Tapetes", price: 50, description: "Reemplazo de los tapetes desgastados por unos nuevos que protegen el piso del vehículo.", img: "img/carrito/Tapete.PNG"},
-                {id: 2, name: "Aromatizantes", price: 45, description: "Aplicación de fragancias para mantener un olor agradable en el interior del vehículo.", img: "img/carrito/Aromatizante.png"},
-                {id: 3, name: "Limpieza Profunda", price: 480, description: "Servicio detallado que incluye aspirado intensivo, limpieza de superficies interiores y eliminación de manchas difíciles.", img: "img/carrito/limpiezapro2.jpg"},
-                {id: 4, name: "Retiro de Pelo de Perro", price: 500, description: "Eliminación especializada de pelos de mascota de asientos, tapicería y alfombras.", img: "img/carrito/LimpiezaPerro_04.PNG"},
-                {id: 5, name: "Corrección de pintura", price: 250, description: "Reparación de rasguños, rayones y desperfectos menores en la pintura del vehículo.", img: "img/carrito/Pintura.png"},
-                {id: 6, name: "Limpieza de Techo Interior", price: 300, description: "Lavado y tratamiento del techo interior (tapizado) del vehículo.", img: "img/carrito/Techo.png"},
-                {id: 7, name: "Limpieza de Motor", price: 380, description: "Servicio de lavado y desengrasar del compartimiento del motor.", img: "img/carrito/LimpiezaMotor2.png"},
-                {id: 8, name: "Pulido de Faros", price: 150, description: "Restauración de faros amarillentos u opacos para mejorar visibilidad y apariencia.", img: "img/carrito/pulido2.jpeg"},
-                {id: 9, name: "Limpieza de Carrocería", price: 450, description: "Lavado exterior completo con atención a detalles como llantas y rines.", img: "img/carrito/Carroceria.png"},
-                {id: 10, name: "Encelado", price: 270, description: "Aplicación de cera protectora que brinda brillo y protección a la pintura.", img: "img/carrito/Encelado.PNG"},
-                {id: 11, name: "Sanitización de Autos", price: 190, description: "Eliminación de gérmenes, bacterias y virus del interior mediante productos especializados.", img: "img/carrito/Sanitización.png"},
-                {id: 12, name: "Lavado de Vapor", price: 290, description: "Limpieza con vapor a alta temperatura que desinfecta y elimina suciedad sin químicos agresivos.", img: "img/carrito/LimpiezaVapor2.png"}
-            ];
-
-            let cart = [];
-            let currentView = 'client';
-            let editingService = null;
-
-            // Elementos del DOM
-            const adminPanel = document.querySelector('.admin-panel');
-            const clientView = document.getElementById('client-view');
-            const serviceFormContainer = document.getElementById('service-form-container');
-            const serviceForm = document.getElementById('service-form');
-            const servicesGrid = document.getElementById('services-grid');
-            const servicesTable = document.getElementById('services-tbody');
-            const cartPanel = document.getElementById('cart-panel');
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            const cartCount = document.getElementById('cart-count');
-
-            // Botones de toggle
-            const clientToggle = document.getElementById('client-toggle');
-            const adminToggle = document.getElementById('admin-toggle');
-
-            // Event listeners para cambiar vista
-            clientToggle.addEventListener('click', function() {
-                switchView('client');
-            });
-
-            adminToggle.addEventListener('click', function() {
-                switchView('admin');
-            });
-
-            // Función para cambiar vista
-            function switchView(view) {
-                currentView = view;
-                
-                if (view === 'client') {
-                    adminPanel.style.display = 'none';
-                    clientView.style.display = 'block';
-                    clientToggle.classList.add('active');
-                    adminToggle.classList.remove('active');
-                    renderServicesGrid();
-                } else {
-                    adminPanel.style.display = 'block';
-                    clientView.style.display = 'block';
-                    adminToggle.classList.add('active');
-                    clientToggle.classList.remove('active');
-                    renderServicesTable();
-                }
-            }
-
-            // Formulario de servicios
-            document.getElementById('btn-add-service').addEventListener('click', function() {
-                openServiceForm();
-            });
-
-            document.getElementById('close-form').addEventListener('click', function() {
-                closeServiceForm();
-            });
-
-            document.getElementById('btn-cancel').addEventListener('click', function() {
-                closeServiceForm();
-            });
-
-            serviceForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                saveService();
-            });
-
-            // Funciones del formulario
-            function openServiceForm(service = null) {
-                editingService = service;
-                const formTitle = document.getElementById('form-title');
-                
-                if (service) {
-                    formTitle.textContent = 'Editar Servicio';
-                    document.getElementById('service-id').value = service.id;
-                    document.getElementById('service-name').value = service.name;
-                    document.getElementById('service-price').value = service.price;
-                    document.getElementById('service-description').value = service.description;
-                    document.getElementById('service-image').value = service.img;
-                } else {
-                    formTitle.textContent = 'Agregar Nuevo Servicio';
-                    serviceForm.reset();
-                    document.getElementById('service-id').value = '';
-                }
-                
-                serviceFormContainer.style.display = 'flex';
-            }
-
-            function closeServiceForm() {
-                serviceFormContainer.style.display = 'none';
-                editingService = null;
-                serviceForm.reset();
-            }
-
-            function saveService() {
-                const id = document.getElementById('service-id').value;
-                const name = document.getElementById('service-name').value;
-                const price = parseFloat(document.getElementById('service-price').value);
-                const description = document.getElementById('service-description').value;
-                const img = document.getElementById('service-image').value;
-
-                if (editingService) {
-                    // Editar servicio existente
-                    const index = services.findIndex(s => s.id == id);
-                    if (index !== -1) {
-                        services[index] = { id: parseInt(id), name, price, description, img };
-                    }
-                } else {
-                    // Agregar nuevo servicio
-                    const newId = Math.max(...services.map(s => s.id)) + 1;
-                    services.push({ id: newId, name, price, description, img });
-                }
-
-                renderServicesTable();
-                renderServicesGrid();
-                closeServiceForm();
-                showNotification(editingService ? 'Servicio actualizado' : 'Servicio agregado');
-            }
-
-            function deleteService(id) {
-                if (confirm('¿Estás seguro de que quieres eliminar este servicio?')) {
-                    services = services.filter(s => s.id !== id);
-                    renderServicesTable();
-                    renderServicesGrid();
-                    showNotification('Servicio eliminado');
-                }
-            }
-
-            // Renderizar tabla de servicios (vista admin)
-            function renderServicesTable() {
-                servicesTable.innerHTML = '';
-                
-                services.forEach(service => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${service.id}</td>
-                        <td><img src="${service.img}" alt="${service.name}" class="service-thumb"></td>
-                        <td>${service.name}</td>
-                        <td class="description-cell">${service.description}</td>
-                        <td>$${service.price}</td>
-                        <td class="actions-cell">
-                            <button class="btn-edit" onclick="openServiceForm(${JSON.stringify(service).replace(/"/g, '&quot;')})">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="btn-delete" onclick="deleteService(${service.id})">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </td>
-                    `;
-                    servicesTable.appendChild(row);
-                });
-            }
-
-            // Renderizar grid de servicios (vista cliente)
-            function renderServicesGrid() {
-                servicesGrid.innerHTML = '';
-                
-                services.forEach(service => {
-                    const serviceCard = document.createElement('div');
-                    serviceCard.className = 'pizza-card';
-                    serviceCard.setAttribute('data-id', service.id);
-                    serviceCard.setAttribute('data-name', service.name);
-                    serviceCard.setAttribute('data-price', service.price);
-                    serviceCard.setAttribute('data-img', service.img);
-                    
-                    serviceCard.innerHTML = `
-                        <img src="${service.img}" alt="${service.name}">
-                        <h3>${service.name}</h3>
-                        <p>${service.description}</p>
-                        <p class="price">$${service.price}</p>
-                        <button class="add-to-cart">Agregar al carrito</button>
-                    `;
-                    
-                    servicesGrid.appendChild(serviceCard);
-                });
-
-                // Agregar event listeners para agregar al carrito
-                document.querySelectorAll('.add-to-cart').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const card = this.closest('.pizza-card');
-                        const id = card.dataset.id;
-                        const name = card.dataset.name;
-                        const price = parseFloat(card.dataset.price);
-                        const img = card.dataset.img;
-                        
-                        addToCart({ id, name, price, img });
-                    });
-                });
-            }
-
-            // Funciones del carrito
-            function addToCart(service) {
-                const existingItem = cart.find(item => item.id === service.id);
-                
-                if (existingItem) {
-                    existingItem.quantity++;
-                } else {
-                    cart.push({ ...service, quantity: 1 });
-                }
-                
-                updateCart();
-                showNotification(`${service.name} agregado`);
-                cartPanel.classList.add('active');
-            }
-
-            function updateCart() {
-                cartItems.innerHTML = '';
-                
-                if (cart.length === 0) {
-                    cartItems.innerHTML = '<p class="empty-cart-message">Tu carrito está vacío</p>';
-                }
-                
-                let total = 0;
-                let count = 0;
-                
-                cart.forEach(item => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    count += item.quantity;
-                    
-                    const cartItem = document.createElement('div');
-                    cartItem.className = 'cart-item';
-                    cartItem.innerHTML = `
-                        <div class="cart-item-image">
-                            <img src="${item.img}" alt="${item.name}">
-                        </div>
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <p>$${item.price}</p>
-                            <div class="cart-item-quantity">
-                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
-                            </div>
-                        </div>
-                        <button class="remove-item" data-id="${item.id}">×</button>
-                    `;
-                    
-                    cartItems.appendChild(cartItem);
-                });
-                
-                cartTotal.textContent = `$${total.toFixed(0)}`;
-                cartCount.textContent = count;
-
-                // Event listeners para botones del carrito
-                document.querySelectorAll('.quantity-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const id = this.dataset.id;
-                        const itemIndex = cart.findIndex(item => item.id === id);
-                        
-                        if (itemIndex !== -1) {
-                            if (this.classList.contains('plus')) {
-                                cart[itemIndex].quantity++;
-                            } else if (this.classList.contains('minus')) {
-                                cart[itemIndex].quantity--;
-                                
-                                if (cart[itemIndex].quantity === 0) {
-                                    cart.splice(itemIndex, 1);
-                                }
-                            }
-                            
-                            updateCart();
-                        }
-                    });
-                });
-                
-                document.querySelectorAll('.remove-item').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const id = this.dataset.id;
-                        const itemIndex = cart.findIndex(item => item.id === id);
-                        
-                        if (itemIndex !== -1) {
-                            cart.splice(itemIndex, 1);
-                            updateCart();
-                        }
-                    });
-                });
-            }
-
-            // Carrito toggle
-            document.getElementById('cart-toggle').addEventListener('click', function() {
-                cartPanel.classList.toggle('active');
-            });
-
-            document.querySelector('.close-cart').addEventListener('click', function() {
-                cartPanel.classList.remove('active');
-            });
-
-            document.getElementById('empty-cart').addEventListener('click', function() {
-                cart = [];
-                updateCart();
-                showNotification('Carrito vaciado');
-            });
-
-            // Función para mostrar notificaciones
-            function showNotification(message) {
-                const notification = document.createElement('div');
-                notification.className = 'notification';
-                notification.textContent = message;
-                
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.classList.add('show');
-                }, 100);
-                
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                    setTimeout(() => {
-                        document.body.removeChild(notification);
-                    }, 500);
-                }, 3000);
-            }
-            
-
-            // Hacer funciones globales
-            window.openServiceForm = openServiceForm;
-            window.deleteService = deleteService;
-
-            // Inicializar vista
-            switchView('client');
-        });
-    </script>
+    <script src="js/serviciosAdmin.js"></script>
 </body>
 </html>

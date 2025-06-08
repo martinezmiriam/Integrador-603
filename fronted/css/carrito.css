@@ -480,11 +480,15 @@ body {
 /* Contenedor del menú */
 .menu-container {
     max-width: 1200px;
-    margin: 30px auto;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    padding: 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
 }
 
 /* Tarjetas de servicio */
