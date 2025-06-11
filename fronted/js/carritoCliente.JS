@@ -6,32 +6,28 @@ const MAX_QUANTITY_PER_PRODUCT = 5;
 let services = [];
 const token = localStorage.getItem("token");
 
-
 // Inicialización cuando el DOM está cargado
 document.addEventListener("DOMContentLoaded", function () {
-
-
-    
-const decoded = parseJwt(token);
-const userId = decoded?.id;
-if (!userId) {
-  console.log("Token inválido o no tiene id");
-  // window.location.href = 'index.html';
-}
-console.log("UserId obtenido del token:", userId);
-
-function parseJwt(token) {
-  try {
-    return JSON.parse(atob(token.split(".")[1]));
-  } catch (e) {
-    return null;
+  const decoded = parseJwt(token);
+  const userId = decoded?.id;
+  if (!userId) {
+    console.log("Token inválido o no tiene id");
+    // window.location.href = 'index.html';
   }
-}
+  console.log("UserId obtenido del token:", userId);
 
-// Verificar autenticación al cargar
-if (!token) {
-  window.location.href = "index.html";
-}
+  function parseJwt(token) {
+    try {
+      return JSON.parse(atob(token.split(".")[1]));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Verificar autenticación al cargar
+  if (!token) {
+    window.location.href = "index.html";
+  }
   // Configuración del menú
   const menuToggle = document.querySelector(".menu-toggle");
   const closeButton = document.querySelector("#menu .close");
@@ -83,29 +79,36 @@ if (!token) {
 
   function loadSelectedPromotion() {
     const selectedPromo = localStorage.getItem("promoSeleccionada");
-    ///OBTENER LA ID
-    ///UN LOG DE LA ID :
+    console.log("ID de promo seleccionada:", selectedPromo); // <-- LOG de la ID
 
     if (selectedPromo) {
-      // Obtener los detalles de la promoción de la API
       fetch(`http://localhost:3000/api/autolavado/${selectedPromo}`)
         .then((res) => res.json())
         .then((promo) => {
-          console.log("PROMO:", promo); // <--- Agregá esto
+          console.log("PROMO recibida:", promo); // <-- LOG de la promo completa
+          console.log("Imagen recibida:", promo.imagen_url); // <-- LOG de la imagen exacta
+
+          const imagenFinal =
+            promo.imagen_url && promo.imagen_url.trim() !== ""
+              ? promo.imagen_url
+              : "img/Promocion/default.png";
+
+          console.log("Imagen que se usará:", imagenFinal); // <-- LOG final de la imagen que se usará
+
           if (promo) {
             addToCart({
               id: `promo-${promo.id_autolavado}`,
               name: promo.nombre_paquete,
               price: promo.precio,
-              img: promo.imagen_url || "img/Promocion/default.png",
+              img: imagenFinal,
               isPromo: true,
             });
+
             showNotification(
               `Promoción "${promo.nombre_paquete}" agregada automáticamente`
             );
           }
         })
-
         .catch((error) => {
           console.error("Error al cargar promoción:", error);
         });
@@ -290,7 +293,7 @@ if (!token) {
       btn.addEventListener("click", function () {
         const id = this.dataset.id;
         const itemIndex = cart.findIndex((item) => item.id === id);
-        localStorage.removeItem("promoSeleccionada")
+        localStorage.removeItem("promoSeleccionada");
 
         if (itemIndex !== -1) {
           cart.splice(itemIndex, 1);
@@ -331,11 +334,10 @@ if (!token) {
 
     // Vaciar carrito
     emptyCartBtn.addEventListener("click", () => {
-      // Mantener la promoción si existe
-      const promo = cart.find((item) => item.isPromo);
-      cart = promo ? [promo] : [];
+      cart = []; // Vacía todo el carrito, promo incluida
+      localStorage.removeItem("promoSeleccionada"); // Borra la promo guardada
       updateCart();
-      showNotification("Carrito vaciado (excepto promoción)", "info");
+      showNotification("Carrito y promoción eliminados", "info");
     });
 
     // Confirmar compra - VERSIÓN ACTUALIZADA

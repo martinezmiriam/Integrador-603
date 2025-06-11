@@ -231,10 +231,164 @@ function getEmoji(type) {
 }
 
 // Funciones para modales
-function openNewPromotionModal() {
-    document.getElementById('newPromotionModal').style.display = 'block';
-    loadServiciosOptions();
+async function showNewPromotionTemplate() {
+    const container = document.getElementById("promotions-container");
+    
+    // Cargar servicios disponibles
+    const servicios = await loadAllServices();
+    
+    // Crear una promoción vacía
+    const emptyPromo = {
+        id_autolavado: "new",
+        nombre_paquete: "Nuevo Paquete",
+        tipo_paquete: "Económico", // Valor por defecto para evitar el error NULL
+        descripcion: "Descripción del paquete",
+        precio: "0",
+        duracion_aprox: "30 min",
+        servicios: [],
+        imagen_url: "img/Promocion/default.png"
+    };
+
+    // Crear la tarjeta
+    const promoCard = createPromotionCard(emptyPromo);
+    
+    // Modificar la tarjeta para el modo creación
+    promoCard.classList.add("creation-mode");
+    promoCard.querySelector('.admin-card-controls').innerHTML = `
+        <button class="save-btn" onclick="saveNewPromotion(this)">
+            <i class="fas fa-save"></i> Guardar
+        </button>
+        <button class="cancel-btn" onclick="cancelNewPromotion(this)">
+            <i class="fas fa-times"></i> Cancelar
+        </button>
+    `;
+    
+    // Agregar selector de tipo de paquete
+    const titleSection = promoCard.querySelector('.title-edit-group');
+    titleSection.innerHTML += `
+        <select class="tipo-paquete-select" onchange="updateTipoPaquete(this)">
+            <option value="Económico">Económico</option>
+            <option value="BÁSICO">Básico</option>
+            <option value="PREMIUM">Premium</option>
+            <option value="VIP">VIP</option>
+        </select>
+    `;
+    
+    // Agregar selector de servicios
+    const serviciosContainer = document.createElement('div');
+    serviciosContainer.className = 'servicios-selector';
+    serviciosContainer.innerHTML = `
+        <h4>Servicios incluidos:</h4>
+        <div class="servicios-options">
+            ${servicios.map(serv => `
+                <label>
+                    <input type="checkbox" name="servicios" value="${serv.id_servicios}">
+                    ${serv.nombre}
+                </label>
+            `).join('')}
+        </div>
+    `;
+    promoCard.querySelector('.service-images').replaceWith(serviciosContainer);
+    
+    // Hacer campos editables
+    const editables = promoCard.querySelectorAll('.editable-text');
+    editables.forEach(el => {
+        el.contentEditable = true;
+        el.classList.add('editing');
+    });
+    
+    // Insertar al principio del contenedor
+    container.insertBefore(promoCard, container.firstChild);
+    
+    // Enfocar el primer campo editable
+    if (editables.length > 0) {
+        editables[0].focus();
+    }
 }
+
+async function loadAllServices() {
+    try {
+        const response = await fetch("http://localhost:3000/api/servicios");
+        return await response.json();
+    } catch (error) {
+        console.error("Error cargando servicios:", error);
+        return [];
+    }
+}
+
+function updateTipoPaquete(select) {
+    const card = select.closest('.promotion-card');
+    card.dataset.tipoPaquete = select.value;
+}
+
+// Función para guardar la nueva promoción
+async function saveNewPromotion(btn) {
+    const card = btn.closest('.promotion-card');
+    
+    // Validar que es una nueva promoción
+    if (card.dataset.promotion !== "new") return;
+    
+    // Recoger los datos de la tarjeta
+    const nombre1 = card.querySelector('[data-field$="-title-1"]').textContent;
+    const nombre2 = card.querySelector('[data-field$="-title-2"]').textContent;
+    const nombre_paquete = `${nombre1} ${nombre2}`.trim();
+    const descripcion = card.querySelector('[data-field$="-descripcion"]').textContent;
+    const precio = card.querySelector('[data-field$="-precio"]').textContent;
+    const duracion = card.querySelector('[data-field$="-duracion"]').textContent;
+    const tipo_paquete = card.querySelector('.tipo-paquete-select').value;
+    
+    // Obtener servicios seleccionados
+    const serviciosCheckboxes = card.querySelectorAll('input[name="servicios"]:checked');
+    const servicios = Array.from(serviciosCheckboxes).map(cb => cb.value);
+    
+    // Validación básica
+    if (!nombre_paquete || !precio || !tipo_paquete) {
+        showNotification('Por favor complete todos los campos requeridos', 'error');
+        return;
+    }
+    
+    // Crear el objeto de promoción
+    const promoData = {
+        nombre_paquete,
+        tipo_paquete, // Asegurarse de incluir este campo
+        descripcion,
+        precio: parseFloat(precio),
+        duracion_aprox: duracion,
+        servicios
+    };
+    
+    try {
+        const response = await fetch("http://localhost:3000/api/autolavado", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(promoData)
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Error al guardar");
+        }
+        
+        showNotification('Promoción creada exitosamente!');
+        loadPromotions(); // Recargar la lista
+    } catch (error) {
+        console.error("Error:", error);
+        showNotification('Error al guardar: ' + error.message, 'error');
+    }
+}
+
+// Función para cancelar la creación
+function cancelNewPromotion(btn) {
+    if (confirm('¿Desea cancelar la creación de esta promoción?')) {
+        const card = btn.closest('.promotion-card');
+        if (card.dataset.promotion === "new") {
+            card.remove();
+        }
+    }
+}
+
 
 function closeNewPromotionModal() {
     document.getElementById('newPromotionModal').style.display = 'none';
@@ -495,16 +649,50 @@ function cancelEdit() {
     currentEditingElement = null;
 }
 
-function saveImageChange() {
+async function saveImageChange() {
     const fileInput = document.getElementById('imageInput');
-    if (fileInput.files.length > 0 && currentImageElement) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            currentImageElement.src = e.target.result;
-            document.getElementById('imageModal').style.display = 'none';
-            showNotification('Imagen actualizada correctamente');
-        };
-        reader.readAsDataURL(fileInput.files[0]);
+    const promoId = currentImageElement?.dataset?.promotion;
+    
+    if (!fileInput.files.length || !currentImageElement || !promoId) {
+        showNotification('No se seleccionó imagen o falta información', 'error');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('imagen', fileInput.files[0]);
+
+    try {
+        // Mostrar indicador de carga
+        const saveBtn = document.querySelector('#imageModal .modal-content button[onclick="saveImageChange()"]');
+        const originalText = saveBtn.innerHTML;
+        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Subiendo...';
+        saveBtn.disabled = true;
+
+        const response = await fetch(`http://localhost:3000/api/autolavado/${promoId}/imagen`, {
+            method: 'PATCH',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(await response.text() || 'Error al subir imagen');
+        }
+
+        const data = await response.json();
+        
+        // Actualizar la imagen en el frontend con la URL del servidor
+        currentImageElement.src = data.imagenUrl;
+        document.getElementById('imageModal').style.display = 'none';
+        showNotification('Imagen actualizada correctamente');
+        
+    } catch (error) {
+        console.error('Error al subir imagen:', error);
+        showNotification(`Error: ${error.message}`, 'error');
+    } finally {
+        // Restaurar el botón a su estado original
+        if (saveBtn) {
+            saveBtn.innerHTML = originalText;
+            saveBtn.disabled = false;
+        }
     }
 }
 

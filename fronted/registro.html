@@ -1,145 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crear Usuario</title>
-    <style>
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        font-family: "Arial", sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        color: #eee5e5;
-      }
-      .video-background {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        z-index: -1;
-        filter: brightness(0.7);
-      }
-      .login-container {
-        background-color: rgba(70, 62, 62, 0.322);
-        border-radius: 15px;
-        width: 350px;
-        padding: 30px;
-        text-align: center;
-        position: relative;
 
-        /* Efecto de sombra 3D mejorado */
-        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15),
-          0 15px 40px rgba(74, 74, 74, 0.25), 0 20px 60px rgba(11, 11, 11, 0.15);
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear Usuario</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Arial", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #eee5e5;
+    }
 
-        /* Transformación 3D más pronunciada */
-        transform: perspective(1000px) rotateX(3deg) rotateY(-3deg);
-        transition: all 0.3s ease;
-      }
-      .login-container:hover {
-        transform: perspective(1000px) rotateX(1deg) rotateY(-1deg);
-      }
-      .login-container::before {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 10px;
-        right: 10px;
-        height: 10px;
-        background: rgba(23, 21, 21, 0.43);
-        border-radius: 50%;
-        filter: blur(10px);
-        z-index: -1;
-      }
-      form {
-        margin-bottom: 15px;
-      }
-      label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 5px;
-        text-align: left;
-      }
-      input {
-        width: 65%;
-        padding: 10px;
-        margin: 5px 0;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        box-sizing: border-box;
-        transition: all 0.3s ease;
-        background-color: rgba(255, 255, 255, 0.9);
-      }
-      input:focus {
-        outline: none;
-        border-color: #b9bab9;
-        box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
-      }
-      .create-btn {
-        background-color: #4a4a4ab2;
-        color: rgb(243, 235, 235);
-        border: none;
-        padding: 12px;
-        border-radius: 8px;
-        width: 100%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        display: block;
-        margin-top: 20px;
-        font-size: 16px;
-        font-weight: bold;
-      }
-      .create-btn:hover {
-        background-color: #828381;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(237, 231, 231, 0.2);
-      }
-      h2 {
-        color: #c3c3bb;
-        margin-bottom: 25px;
-        font-size: 28px;
-      }
-      .error-message {
-        color: #ff6b6b;
-        font-size: 0.9em;
-        margin-top: 10px;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: rgba(255, 107, 107, 0.1);
-        display: none;
-      }
-      .success-message {
-        color: #4bb543;
-        font-size: 0.9em;
-        margin-top: 10px;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: rgba(75, 181, 67, 0.1);
-        display: none;
-      }
-      /* Estilo para la validación de entrada */
-      input:invalid {
-        border-color: #ff6b6b;
-      }
-      /* Estilo para el contenedor del campo de contraseña */
-      .password-field {
-        position: relative;
-        width: 65%;
-      }
-    </style>
-  </head>
-  <script src="config.js"></script>
- <body>
+    .video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      filter: brightness(0.7);
+    }
+
+    .login-container {
+      background-color: rgba(70, 62, 62, 0.322);
+      border-radius: 15px;
+      width: 350px;
+      padding: 30px;
+      text-align: center;
+      position: relative;
+
+      /* Efecto de sombra 3D mejorado */
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.15),
+        0 15px 40px rgba(74, 74, 74, 0.25), 0 20px 60px rgba(11, 11, 11, 0.15);
+
+      /* Transformación 3D más pronunciada */
+      transform: perspective(1000px) rotateX(3deg) rotateY(-3deg);
+      transition: all 0.3s ease;
+    }
+
+    .login-container:hover {
+      transform: perspective(1000px) rotateX(1deg) rotateY(-1deg);
+    }
+
+    .login-container::before {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 10px;
+      right: 10px;
+      height: 10px;
+      background: rgba(23, 21, 21, 0.43);
+      border-radius: 50%;
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    form {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input {
+      width: 65%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #b9bab9;
+      box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+    }
+
+    .create-btn {
+      background-color: #4a4a4ab2;
+      color: rgb(243, 235, 235);
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .create-btn:hover {
+      background-color: #828381;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(237, 231, 231, 0.2);
+    }
+
+    h2 {
+      color: #c3c3bb;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.9em;
+      margin-top: 10px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: rgba(255, 107, 107, 0.1);
+      display: none;
+    }
+
+    .success-message {
+      color: #4bb543;
+      font-size: 0.9em;
+      margin-top: 10px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: rgba(75, 181, 67, 0.1);
+      display: none;
+    }
+
+    /* Estilo para la validación de entrada */
+    input:invalid {
+      border-color: #ff6b6b;
+    }
+
+    /* Estilo para el contenedor del campo de contraseña */
+    .password-field {
+      position: relative;
+      width: 65%;
+    }
+  </style>
+</head>
+<script src="config.js"></script>
+
+<body>
   <video autoplay loop muted playsinline class="video-background">
     <source src="../img/Fondo_inicioS.mp4" type="video/mp4" />
   </video>
@@ -158,18 +175,14 @@
 
       <label>
         Correo Electrónico:
-        <input type="email" name="usuario" required />
+        <input type="email" name="correo" required />
       </label>
+
 
       <label>
         Contraseña:
-        <input
-          type="password"
-          name="password"
-          required
-          pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[.\-?]).{10,12}$"
-          title="Entre 10-12 caracteres, incluir mayúsculas, minúsculas, números y al menos un símbolo (., -, ?)"
-        />
+        <input type="password" name="password" required pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[.\-?]).{10,12}$"
+          title="Entre 10-12 caracteres, incluir mayúsculas, minúsculas, números y al menos un símbolo (., -, ?)" />
       </label>
 
       <button type="submit" class="create-btn">Crear</button>
@@ -182,9 +195,7 @@
       ¡Usuario creado exitosamente!
     </div>
     <div class="remember-forgot">
-      <a href="index.html" style="color: #c8c4cb"
-        >¿Ya tienes cuenta? Inicia sesión</a
-      >
+      <a href="index.html" style="color: #c8c4cb">¿Ya tienes cuenta? Inicia sesión</a>
     </div>
   </div>
   <script>

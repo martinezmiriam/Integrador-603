@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas - Admin. Estacionamiento y Autolavado O.C</title>
     <link rel="stylesheet" href="css/reserva.css">
-    <!-- Archivo CSS separado para el panel admin -->
     <link rel="stylesheet" href="css/admin-panel.css">
-    <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
@@ -73,21 +71,22 @@
             <div class="admin-card carwash">
                 <h3>Autolavado</h3>
                 <div class="count" id="carwash-count">0</div>
-                <p>Vehículos registrados</p>
+                <p>Promos activas</p>
             </div>
 
             <div class="admin-card total">
                 <h3>Total Servicios</h3>
                 <div class="count" id="total-count">0</div>
-                <p>Vehículos totales</p>
+                <p>servicios activos</p>
             </div>
         </div>
 
-        <h3 class="admin-section-title">Registro de Clientes</h3>
+     <h3 class="admin-section-title">Registro de Clientes</h3>
 
         <div class="admin-search-bar">
             <input type="text" id="search-input" placeholder="Buscar cliente por nombre...">
             <button id="search-button" class="admin-btn-primary">Buscar</button>
+            <button id="reset-search" class="admin-btn-secondary">Resetear</button>
         </div>
 
         <div class="admin-filters">
@@ -95,9 +94,8 @@
                 <label>Servicio:</label>
                 <select id="service-filter">
                     <option value="all">Todos los servicios</option>
-                    <option value="carwash">Solo autolavado</option>
                     <option value="parking">Solo estacionamiento</option>
-                    <option value="both">Ambos servicios</option>
+ 
                 </select>
             </div>
 
@@ -105,8 +103,8 @@
                 <label>Estado de pago:</label>
                 <select id="payment-filter">
                     <option value="all">Todos</option>
-                    <option value="paid">Pagados</option>
-                    <option value="unpaid">Sin pagar</option>
+                    <option value="paid">Sin pagar</option>
+                    <option value="unpaid"> Pagados</option>
                 </select>
             </div>
         </div>
@@ -115,9 +113,8 @@
             <table class="admin-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
-                        <th>Tipo de Lavado</th>
+                        <th>Tipo de vehiculo</th>
                         <th>Estacionamiento</th>
                         <th>Estado de Pago</th>
                         <th>Fecha/Hora</th>
@@ -131,9 +128,9 @@
         </div>
 
         <div class="admin-pagination">
-            <button id="prev-page">&laquo;</button>
-            <span id="page-info">Página 1</span>
-            <button id="next-page">&raquo;</button>
+            <button id="prev-page" disabled>&laquo; Anterior</button>
+            <span id="page-info">Página 1 de 1</span>
+            <button id="next-page" disabled>Siguiente &raquo;</button>
         </div>
 
     </div>
@@ -143,114 +140,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script>
-        const token = localStorage.getItem('token');
-        if (!token) {
-            // Si no hay token, redirigir al login
-            window.location.href = 'index.html';
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-            // Script para toggle del menú
-            document.querySelector('a[href="#menu"]').addEventListener('click', function (e) {
-                e.preventDefault();
-                document.getElementById('menu').classList.toggle('active');
-            });
-
-            // Script para cerrar el menú
-            document.querySelector('#menu .close').addEventListener('click', function (e) {
-                e.preventDefault();
-                document.getElementById('menu').classList.remove('active');
-            });
-
-            document.addEventListener('DOMContentLoaded', function () {
-
-                // Script para toggle del menú
-                const menuToggle = document.querySelector('a[href="#menu"]');
-                if (menuToggle) {
-                    menuToggle.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        document.getElementById('menu').classList.toggle('active');
-                    });
-                }
-
-                // Script para cerrar el menú
-                const closeMenu = document.querySelector('#menu .close');
-                if (closeMenu) {
-                    closeMenu.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        document.getElementById('menu').classList.remove('active');
-                    });
-                }
-            });
-
-        });
-
-    </script>
-    <script>
-        const API_BASE_URL = 'http://localhost:3000/api'; // Cambia según tu config
-
-        async function cargarReservas(fecha) {
-            try {
-                const response = await fetch(`${API_BASE_URL}/reservas/conteo?fecha=${fecha}`);
-                if (!response.ok) throw new Error('Error al obtener reservas');
-                const data = await response.json();
-
-                // Actualizar el contador de ocupados y disponibles
-                document.getElementById('parking-count').textContent = data.ocupados;
-                document.getElementById('parking-availability').textContent = data.disponibles;
-
-                // Actualizar barra de capacidad (ancho proporcional)
-                const capacidadFill = document.getElementById('parking-capacity-fill');
-                const porcentaje = (data.ocupados / data.capacidad_total) * 100;
-                capacidadFill.style.width = porcentaje + '%';
-
-                // Aquí también puedes actualizar la tabla con data.reservas si quieres
-
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        async function cargarPaquetes() {
-            try {
-                const res = await fetch(`${API_BASE_URL}/autolavado`);
-                if (!res.ok) throw new Error('Error al obtener paquetes');
-                const paquetes = await res.json();
-
-                // Por ejemplo, contar cuantos paquetes hay y mostrar en el contador autolavado
-                const count = paquetes.length;
-                document.getElementById('carwash-count').textContent = count;
-
-                // Puedes hacer algo más, como listar paquetes en UI
-
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-        async function cargarServicios() {
-            try {
-                const res = await fetch(`${API_BASE_URL}/servicios`);
-                if (!res.ok) throw new Error('Error al obtener servicios');
-                const servicios = await res.json();
-
-                // Mostrar total de servicios en el contador total
-                document.getElementById('total-count').textContent = servicios.length;
-
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const hoy = new Date().toISOString().slice(0, 10);
-            cargarReservas(hoy);
-            cargarPaquetes();
-            cargarServicios();
-        });
-
-
-
-    </script>
+    <script src="js/reservasAdmin.js"></script>
 </body>
 
 </html>

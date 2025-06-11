@@ -53,17 +53,11 @@
         <div class="admin-toolbar">
             <h2><i class="fas fa-cog"></i> Panel de Administración</h2>
             <div class="toolbar-buttons">
-                <button class="btn-save" onclick="saveChanges()">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
-                <button class="btn-add" onclick="openNewPromotionModal()">
+                <button class="add-promotion-btn" onclick="showNewPromotionTemplate()">
                     <i class="fas fa-plus"></i> Nuevo Paquete
                 </button>
                 <button class="btn-preview" onclick="togglePreview()">
                     <i class="fas fa-eye"></i> Vista Previa
-                </button>
-                <button class="btn-reset" onclick="resetChanges()">
-                    <i class="fas fa-undo"></i> Resetear
                 </button>
             </div>
         </div>
@@ -137,7 +131,7 @@
 
                 <label for="duracion_aprox">Duración aproximada:</label>
                 <input type="text" id="duracion_aprox" name="duracion_aprox" required placeholder="Ejemplo: 30 minutos">
-                
+
                 <label>Servicios:</label>
                 <div id="servicios-options" class="servicios-list"></div>
 
@@ -206,4 +200,5 @@
 
     <script src="js/loadPromotions.js"></script>
 </body>
+
 </html>

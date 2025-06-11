@@ -353,12 +353,20 @@ body {
     position: relative;
     text-align: center;
     margin-bottom: 25px;
+    padding: 5px;
 }
 
 .service-title {
     font-size: 2rem;
     margin: 0;
     line-height: 1.2;
+    padding: 5px;
+    margin: 2px;
+
+}
+.descripcion-precio-duracion{
+    padding: 5px;
+
 }
 
 .highlight {
@@ -753,6 +761,91 @@ body {
 
 .edit-btn {
   background-color: #2196f3;
+}
+
+/*nueva promo*/
+/* Estilo para el botón de añadir */
+.add-promotion-btn {
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.add-promotion-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para el modo creación */
+.promotion-card.creation-mode {
+    border: 2px dashed #4CAF50;
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+
+.promotion-card.creation-mode .editable-text.editing {
+    min-height: 20px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    outline: none;
+}
+
+.promotion-card.creation-mode .editable-text.editing:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Estilos para los botones de guardar/cancelar */
+.save-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Estilos para el selector de tipo de paquete */
+.tipo-paquete-select {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Estilos para el selector de servicios */
+.servicios-selector {
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.servicios-selector h4 {
+    margin-top: 0;
+}
+
+.servicios-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.servicios-options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.servicios-options input {
+    margin-right: 8px;
 }
 
 

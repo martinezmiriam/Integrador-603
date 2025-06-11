@@ -201,49 +201,86 @@
 	</div>
 
 	<!-- Scripts -->
-	<script>
-		const token = localStorage.getItem('token');
-		if (!token) {
-			// Si no hay token, redirigir al login
-			window.location.href = 'index.html';
-		}
-		document.addEventListener('DOMContentLoaded', function () {
-			// Script para toggle del menú
-			document.querySelector('a[href="#menu"]').addEventListener('click', function (e) {
-				e.preventDefault();
-				document.getElementById('menu').classList.toggle('active');
-			});
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Verificar si hay token para autenticación
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = 'index.html'; // Redirigir si no hay sesión
+        return;
+    }
 
-			// Script para cerrar el menú
-			document.querySelector('#menu .close').addEventListener('click', function (e) {
-				e.preventDefault();
-				document.getElementById('menu').classList.remove('active');
-			});
+    // Toggle del menú
+    const menuToggle = document.querySelector('a[href="#menu"]');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('menu').classList.toggle('active');
+        });
+    }
 
-			document.addEventListener('DOMContentLoaded', function () {
+    // Cerrar el menú
+    const closeMenu = document.querySelector('#menu .close');
+    if (closeMenu) {
+        closeMenu.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('menu').classList.remove('active');
+        });
+    }
 
-				// Script para toggle del menú
-				const menuToggle = document.querySelector('a[href="#menu"]');
-				if (menuToggle) {
-					menuToggle.addEventListener('click', function (e) {
-						e.preventDefault();
-						document.getElementById('menu').classList.toggle('active');
-					});
-				}
+    // Datos de ubicación desde localStorage o por defecto
+    const direccion = localStorage.getItem('direccion_completa') || 'La Palma Manzana 030, Centro, 50640 San Felipe del Progreso, Estado de México';
+    const horario = localStorage.getItem('horario_atencion') || 'Lunes a Domingo: 8:00 AM - 6:00 PM';
+    const telefono1 = localStorage.getItem('telefono1') || '(712) 169 4956';
+    const telefono2 = localStorage.getItem('telefono2') || '(712) 162 4041';
+    const email = localStorage.getItem('email_contacto') || 'ositoscari@gmail.com';
+    const urlMapa = localStorage.getItem('url_google_maps') || 'https://www.google.com/maps/place/...';
 
-				// Script para cerrar el menú
-				const closeMenu = document.querySelector('#menu .close');
-				if (closeMenu) {
-					closeMenu.addEventListener('click', function (e) {
-						e.preventDefault();
-						document.getElementById('menu').classList.remove('active');
-					});
-				}
-			});
+    // Actualizar contenido dinámico
+    const tituloDireccion = document.querySelector('.direccion-titulo');
+    if (tituloDireccion) tituloDireccion.textContent = 'Estacionamiento y Autolavado O.C';
 
-		});
+    const detallesDireccion = document.querySelector('.direccion-detalles');
+    if (detallesDireccion) detallesDireccion.textContent = direccion;
 
-	</script>
+    const mapaTexto = document.querySelector('.ver-mapa-btn');
+    if (mapaTexto) mapaTexto.textContent = 'Ver en Google Maps';
+
+    // Usamos querySelectorAll para evitar error de "null"
+    const detalles = document.querySelectorAll('.detalle-texto');
+    if (detalles.length >= 2) {
+        detalles[0].textContent = horario;
+        detalles[1].textContent = `${telefono1} / ${telefono2}`;
+    }
+
+    // Enlace del botón "Ver en Google Maps"
+    const mapaLink = document.querySelector('.mapa-link');
+    if (mapaLink) mapaLink.setAttribute('href', urlMapa);
+
+    // Botón "Cómo llegar"
+    const comoLlegar = document.querySelector('.boton-como-llegar');
+    if (comoLlegar) comoLlegar.setAttribute('href', urlMapa);
+
+    // Botón "Llamar"
+    const llamarBtn = document.querySelector('.boton-llamar');
+    if (llamarBtn) {
+        const telLimpio = telefono1.replace(/\D/g, '');
+        llamarBtn.setAttribute('href', 'tel:' + telLimpio);
+    }
+
+    // Información del footer
+    const contactoFooter = document.querySelector('ul.contact');
+    if (contactoFooter) {
+        contactoFooter.innerHTML = `
+            <li>Dirección: ${direccion}</li>
+            <li>Teléfono: ${telefono1} ${telefono2}</li>
+            <li>Email: ${email}</li>
+        `;
+    }
+});
+</script>
+
+
 
 </body>
 

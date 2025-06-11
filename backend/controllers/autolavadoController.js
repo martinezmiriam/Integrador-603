@@ -71,7 +71,19 @@ exports.getById = async (req, res) => {
       [id]
     );
 
-    paquete.servicios = serviciosRows.map(s => s.nombre); // o puedes usar IDs
+    paquete.servicios = serviciosRows.map(s => s.nombre);
+
+    // Ahora buscamos la imagen en la carpeta, igual que en getAll
+    const carpetaImg = path.join(__dirname, "../../fronted/img/Promocion");
+    let archivosImg = [];
+
+    if (fs.existsSync(carpetaImg)) {
+      archivosImg = fs.readdirSync(carpetaImg);
+    }
+
+    const archivoImg = archivosImg.find(f => f.startsWith(paquete.id_autolavado + "_"));
+
+    paquete.imagen_url = archivoImg ? `/img/Promocion/${archivoImg}` : null;
 
     res.json(paquete);
   } catch (err) {

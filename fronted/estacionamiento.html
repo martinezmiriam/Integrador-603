@@ -169,11 +169,6 @@
             <div class="detail-label">Hora Entrada:</div>
             <div class="detail-value" id="ticket-hora-entrada"></div>
           </div>
-
-          <div class="time-group">
-            <div class="detail-label">Hora Salida:</div>
-            <div class="detail-value" id="ticket-hora-salida">--:--</div>
-          </div>
         </div>
 
         <div class="parking-info">
@@ -236,9 +231,6 @@
       e.preventDefault();
 
 
-
-      alert("Formulario enviado, empezando validaciones...");
-
       const token = localStorage.getItem('token');
       console.log("Token del localStorage:", token);
       if (!token) {
@@ -271,7 +263,6 @@
       };
 
       console.log("Datos a enviar:", data);
-      alert("Datos listos para enviar, haciendo fetch...");
 
       try {
         const response = await fetch("http://localhost:3000/api/reservas", {
@@ -286,22 +277,48 @@
         console.log("Respuesta del servidor:", response);
 
         if (!response.ok) {
-          const errorData = await response.json();
+          let errorData;
+          try {
+            errorData = await response.json();
+          } catch (jsonError) {
+            console.error("Error al parsear JSON del error:", jsonError);
+            alert(`Error al crear reserva: ${response.status} ${response.statusText}`);
+            return;
+          }
           console.error("Error en la respuesta:", errorData);
           alert("Error al crear reserva: " + (errorData.error || "Error desconocido"));
           return;
         }
 
         alert("Reserva creada exitosamente");
-        console.log("Reserva creada, limpiando formulario...");
         this.reset();
 
-        // Aquí podrías abrir el modal del ticket si quieres
-        alert("Aquí mostrarías el ticket.");
+
+        function getRandomParkingSpot() {
+          return Math.floor(Math.random() * 50) + 1;
+        }
+
+        // Asumiendo que tenés las variables:
+        document.getElementById('ticket-nombre-cliente').textContent = data.nombre;
+        document.getElementById('ticket-fecha').textContent = data.fecha_solicitada;
+        document.getElementById('ticket-hora-entrada').textContent = data.hora_llegada;
+        document.getElementById('ticket-parking-spot').textContent = getRandomParkingSpot();
+        document.getElementById('ticket-vehicle-type').textContent = data.tipo_vehiculo;
+        document.getElementById('ticket-matricula').textContent = data.matricula;
+
+
+        document.getElementById('ticket-modal').style.display = 'flex';
+
       } catch (error) {
-        console.error("Error en la petición fetch:", error);
+        console.error("Error catch:", error);
         alert("Error al enviar la reserva, intenta más tarde");
       }
+
+      document.querySelector(".close-modal").addEventListener("click", () => {
+  document.getElementById("ticket-modal").style.display = "none";
+});
+
+
     });
   </script>
 

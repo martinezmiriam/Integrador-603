@@ -1,0 +1,114 @@
+/* Notificaciones */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background-color: #ff6b6b;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slide-in 0.5s ease-out;
+}
+
+.notification.fade-out {
+    animation: fade-out 0.5s ease-out;
+}
+
+@keyframes slide-in {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Estados de pago */
+.payment-status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.payment-status.paid {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.payment-status.unpaid {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Botones de acción */
+.btn-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 3px;
+    font-size: 1.1em;
+    color: #555;
+    transition: color 0.2s;
+}
+
+.btn-action:hover {
+    color: #007bff;
+}
+
+.btn-action.delete:hover {
+    color: #dc3545;
+}
+
+/* Sin resultados */
+.no-results {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+}
+
+/* Barra de búsqueda */
+.admin-search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.admin-search-bar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.admin-btn-primary {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-btn-primary:hover {
+    background-color: #0069d9;
+}
+
+.admin-btn-secondary {
+    padding: 10px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-btn-secondary:hover {
+    background-color: #5a6268;
+}
