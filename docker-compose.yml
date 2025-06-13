@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile    
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - ./fronted:/fronted
+    env_file:
+      - ./backend/.env  # O donde tengas el archivo .env
+    environment:
+      BD_URL: ${BD_URL}
+    working_dir: /app
+    command: npm run dev

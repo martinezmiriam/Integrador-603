@@ -1,5 +1,6 @@
 // index.js
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const path = require('path');
 
@@ -10,6 +11,7 @@ const compraRoutes = require("./routes/compraRoutes");
 const reservas = require("./routes/reserva");
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 // Middleware
 app.use(cors({ origin: 'http://localhost:3000' }));
@@ -30,6 +32,7 @@ app.use('/api/servicios', serviciosRoutes);
 app.use('/api/autolavado', autolavadoRoutes);
 app.use("/api/compras", compraRoutes);
 
+console.log('bd url',process.env.BD_URL)
 
 // Ruta base de prueba
 app.get('/api', (req, res) => {
